@@ -16,7 +16,6 @@ public:
     explicit LoginUi(QWidget *parent = 0);
     ~LoginUi();
     void loginPost(QString url, QString uname, QString pass);
-    QString MD5(QString);
 
 private slots:
     void on_loginButton_clicked();

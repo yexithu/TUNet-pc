@@ -14,10 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         loginui.cpp \
-    accountui.cpp
+    accountui.cpp \
+    logincontrol.cpp \
+    accountcontrol.cpp
 
 HEADERS  += loginui.h \
-    accountui.h
+    accountui.h \
+    logincontrol.h \
+    accountcontrol.h
 
 FORMS    += loginui.ui \
     accountui.ui

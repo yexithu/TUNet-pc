@@ -6,12 +6,20 @@ LoginUi::LoginUi(QWidget *parent) :
     ui(new Ui::LoginUi)
 {
     ui->setupUi(this);
-    connect(manager,SIGNAL(finished(QNetworkReply*)), this,SLOT(replyFinished(QNetworkReply*)));
+    manager = new QNetworkAccessManager;
+    connect(manager, SIGNAL(finished(QNetworkReply*)),this, SLOT(replyFinished(QNetworkReply*)));
 }
 
 LoginUi::~LoginUi()
 {
     delete ui;
+}
+
+void LoginUi::replyFinished(QNetworkReply *reply)
+{
+    QTextCodec *codec = QTextCodec::codecForName("utf8");
+    QString ureply = codec->toUnicode(reply->readAll());
+    qDebug() << ureply;
 }
 
 void LoginUi::on_loginButton_clicked()
@@ -33,9 +41,4 @@ void LoginUi::loginPost(QString url, QString uname, QString pass)
     req.setHeader(QNetworkRequest::ContentTypeHeader,"application/x-www-form-urlencoded");
     req.setHeader(QNetworkRequest::ContentLengthHeader, contentLength);
     manager->post(req,content);
-}
-
-QString MD5(QString pass)
-{
-
 }
