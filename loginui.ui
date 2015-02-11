@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginUi</class>
+ <widget class="QWidget" name="LoginUi">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>362</width>
+    <height>390</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LoginUi</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>160</y>
+     <width>281</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLineEdit" name="username">
+      <property name="styleSheet">
+       <string notr="true">color: #aaa;
+background-color: #fff;
+margin: 0% 5%;
+padding: 7% 0;
+border-radius:5px;
+border: 1px solid groove grey;</string>
+      </property>
+      <property name="text">
+       <string>用户名/学号</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="password">
+      <property name="styleSheet">
+       <string notr="true">color: #aaa;
+background-color: #fff;
+margin: 0% 5%;
+padding: 7% 0;
+border-radius:5px;
+border: 1px solid groove grey;</string>
+      </property>
+      <property name="text">
+       <string>密码</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QCheckBox" name="savePassword">
+        <property name="styleSheet">
+         <string notr="true">color: #777;</string>
+        </property>
+        <property name="text">
+         <string>记住密码</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="autoLogin">
+        <property name="styleSheet">
+         <string notr="true">color: #777;</string>
+        </property>
+        <property name="text">
+         <string>自动登录</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="loginButton">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(96, 186, 255);
+border-radius:5px;
+margin: 5% 5%;
+padding: 10% 0;
+color: #eeeeff;</string>
+      </property>
+      <property name="text">
+       <string>登陆</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
