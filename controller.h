@@ -10,7 +10,11 @@ public:
     ~Controller();
 
 private slots:
-    loginControl(QString username, QString password);
+    void loginControl(QString username, QString password);
+    void logoutControl();
+    void loginRespond(QString respond);
+    void queryRespond(QString respond);
+    void logoutRespond(QString respond);
 };
 
 #endif // CONTROLLER_H

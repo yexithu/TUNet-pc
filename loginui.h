@@ -21,7 +21,6 @@ signals:
 
 private:
     Ui::LoginUi *ui;
-//    QNetworkAccessManager *loginManager;
     QString url;
     QString username;
     QString password;

@@ -12,3 +12,7 @@ LoginUi::~LoginUi()
 {
     delete ui;
 }
+
+LoginUi::loginSignal(QString username, QString password)
+{
+}

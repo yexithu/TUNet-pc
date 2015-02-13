@@ -15,6 +15,9 @@ public:
     explicit AccountUi(QWidget *parent = 0);
     ~AccountUi();
 
+signals:
+    void logoutSignal();
+
 private:
     Ui::AccountUi *ui;
 };
