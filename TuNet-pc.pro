@@ -12,16 +12,17 @@ TARGET = TuNet-pc
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=\
         loginui.cpp \
+    main.cpp \
+    controller.cpp \
     accountui.cpp \
-    logincontrol.cpp \
-    accountcontrol.cpp
+    network.cpp
 
 HEADERS  += loginui.h \
+    controller.h \
     accountui.h \
-    logincontrol.h \
-    accountcontrol.h
+    network.h
 
 FORMS    += loginui.ui \
     accountui.ui

@@ -3,7 +3,7 @@
  <comment/>
  <exportmacro/>
  <class>AccountUi</class>
- <widget class="QWidget" name="AccountUi">
+ <widget name="AccountUi" class="QWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
