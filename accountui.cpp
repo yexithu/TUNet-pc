@@ -12,7 +12,3 @@ AccountUi::~AccountUi()
 {
     delete ui;
 }
-
-AccountUi::logoutSignal()
-{
-}
