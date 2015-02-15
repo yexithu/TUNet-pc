@@ -3,7 +3,7 @@
 
 #include "controller.h"
 
-class Network
+class Network : public QObject
 {
 public:
     Network();
