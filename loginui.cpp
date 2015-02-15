@@ -14,13 +14,13 @@ LoginUi::LoginUi(QWidget *parent) :
 
 void LoginUi::selectSavePassword(int state)
 {
-    if (state==Qt::Checked)
+    if (state == Qt::Checked)
         ui->savePassword->setCheckState(Qt::Checked);
 }
 
 void LoginUi::disselectAutoLogin(int state)
 {
-    if (state==Qt::Unchecked)
+    if (state == Qt::Unchecked)
         ui->autoLogin->setCheckState(Qt::Unchecked);
 }
 
