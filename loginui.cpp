@@ -50,8 +50,6 @@ void LoginUi::loadInfo()
         ui->autoLogin->setCheckState(Qt::Checked);
 
     srand(42);
-    if (ch1 !='C' && ch1 !='U')
-        return;
     fscanf(input, "%c", &ch);
     int usernameLength = ch ^ (rand() & 127);
     QString username = "";
