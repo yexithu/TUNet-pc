@@ -24,6 +24,10 @@ private:
     QString url;
     QString username;
     QString password;
+
+private slots:
+    void selectSavePassword(int state);
+    void disselectAutoLogin(int state);
 };
 
 #endif // LOGINUI_H
