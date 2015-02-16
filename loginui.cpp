@@ -38,70 +38,21 @@ void LoginUi::disselectAutoLogin(int state)
 
 void LoginUi::loadInfo()
 {
-    FILE *input = fopen("TUNet-pc.log", "r");
-    if (!input)
-        return;
-
-    char ch1, ch2, ch;
-    fscanf(input, "%c", &ch1);
-    if (ch1 == 'C')
+    if (settings.value("savePassword", false).toBool())
         ui->savePassword->setCheckState(Qt::Checked);
-    fscanf(input, "%c", &ch2);
-    if (ch2 == 'C')
+    if (settings.value("autoLogin", false).toBool())
         ui->autoLogin->setCheckState(Qt::Checked);
-
-    srand(42);
-    fscanf(input, "%c", &ch);
-    int usernameLength = ch ^ (rand() & 127);
-    QString username = "";
-    while (usernameLength--)
-    {
-        fscanf(input, "%c", &ch);
-        username += (ch ^ (rand() & 127));
-    }
-    ui->username->setText(username);
-
-
-    if (ch1 != 'C')
-        return;
-    fscanf(input, "%c", &ch);
-    int passwordLength = ch ^ (rand() & 127);
-    QString password = "";
-    while (passwordLength--)
-    {
-        fscanf(input, "%c", &ch);
-        password += (ch ^ (rand() & 127));
-    }
-    ui->password->setText(password);
-
-    fclose(input);
+    ui->username->setText(settings.value("username", "").toString());
+    ui->password->setText(settings.value("password", "").toString());
 }
 
 void LoginUi::saveInfo()
 {
-    FILE *output = fopen("TUNet-pc.log", "w");
-
+    settings.setValue("savePassword", ui->savePassword->checkState() == Qt::Checked);
+    settings.setValue("autoLogin", ui->autoLogin->checkState() == Qt::Checked);
+    settings.setValue("username", ui->username->text());
     if (ui->savePassword->checkState() == Qt::Checked)
-        fprintf(output, "C");
+        settings.setValue("password", ui->password->text());
     else
-        fprintf(output, "U");
-    if (ui->autoLogin->checkState() == Qt::Checked)
-        fprintf(output, "C");
-    else
-        fprintf(output, "U");
-
-    srand(42);
-    int usernameLength = ui->username->text().length();
-    fprintf(output, "%c", usernameLength ^ (rand() & 127));
-    for (int i = 0; i < usernameLength; i++)
-        fprintf(output, "%c", ui->username->text().at(i).toLatin1() ^ (rand() & 127));
-
-    if (ui->savePassword->checkState() != Qt::Checked)
-        return;
-    int passwordLength = ui->password->text().length();
-    fprintf(output, "%c", passwordLength ^ (rand() & 127));
-    for (int i = 0; i < passwordLength; i++)
-        fprintf(output, "%c", ui->password->text().at(i).toLatin1() ^ (rand() & 127));
-
-    fclose(output);
+        settings.setValue("password", "");
 }
