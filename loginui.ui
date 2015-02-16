@@ -33,8 +33,7 @@
     <item>
      <widget class="QLineEdit" name="username">
       <property name="styleSheet">
-       <string notr="true">color: #aaa;
-background-color: #fff;
+       <string notr="true">background-color: #fff;
 margin: 0% 5%;
 padding: 7% 0;
 border-radius:5px;
@@ -51,8 +50,7 @@ border: 1px solid groove grey;</string>
     <item>
      <widget class="QLineEdit" name="password">
       <property name="styleSheet">
-       <string notr="true">color: #aaa;
-background-color: #fff;
+       <string notr="true">background-color: #fff;
 margin: 0% 5%;
 padding: 7% 0;
 border-radius:5px;
