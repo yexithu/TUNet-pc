@@ -10,16 +10,13 @@ LoginUi::LoginUi(QWidget *parent) :
 {
     ui->setupUi(this);
     LoginUi::loadInfo();
+    ui->password->setEchoMode(QLineEdit::Password);
     connect(ui->autoLogin, SIGNAL(stateChanged(int)),
             this, SLOT(selectSavePassword(int)));
     connect(ui->savePassword, SIGNAL(stateChanged(int)),
             this, SLOT(disselectAutoLogin(int)));
     connect(ui->loginButton, SIGNAL(clicked()),
             this, SLOT(saveInfo()));
-    connect(ui->username, SIGNAL(selectionChanged()),
-            this, SLOT(selectUsername()));
-    connect(ui->password, SIGNAL(selectionChanged()),
-            this, SLOT(selectPassword()));
 }
 
 LoginUi::~LoginUi()
@@ -64,8 +61,7 @@ void LoginUi::loadInfo()
     }
     ui->username->setText(username);
 
-    ui->password->setText("");
-    ui->password->setEchoMode(QLineEdit::Password);
+
     if (ch1 != 'C')
         return;
     fscanf(input, "%c", &ch);
@@ -108,21 +104,4 @@ void LoginUi::saveInfo()
         fprintf(output, "%c", ui->password->text().at(i).toLatin1() ^ (rand() & 127));
 
     fclose(output);
-}
-
-void LoginUi::selectUsername()
-{
-    if (!ui->username->text().length())
-        return;
-    if (!fopen("TUNet-pc.log", "r"))
-        ui->username->setText("");
-}
-
-void LoginUi::selectPassword()
-{
-    ui->password->setEchoMode(QLineEdit::Password);
-    if (!ui->password->text().length())
-        return;
-    if (!fopen("TUNet-pc.log", "r"))
-        ui->password->setText("");
 }

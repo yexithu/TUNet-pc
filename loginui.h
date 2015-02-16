@@ -30,8 +30,6 @@ private slots:
     void disselectAutoLogin(int state);
     void loadInfo();
     void saveInfo();
-    void selectUsername();
-    void selectPassword();
 };
 
 #endif // LOGINUI_H
