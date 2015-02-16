@@ -28,3 +28,6 @@ FORMS    += loginui.ui \
     accountui.ui
 
 QT += network
+
+RESOURCES += \
+    pictures.qrc
