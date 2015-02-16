@@ -114,7 +114,7 @@ void LoginUi::selectUsername()
 {
     if (!ui->username->text().length())
         return;
-    if (ui->username->text().at(0).unicode() > 255)
+    if (!fopen("TUNet-pc.log", "r"))
         ui->username->setText("");
 }
 
@@ -123,6 +123,6 @@ void LoginUi::selectPassword()
     ui->password->setEchoMode(QLineEdit::Password);
     if (!ui->password->text().length())
         return;
-    if (ui->password->text().at(0).unicode() > 255)
+    if (!fopen("TUNet-pc.log", "r"))
         ui->password->setText("");
 }
