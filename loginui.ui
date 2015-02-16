@@ -33,14 +33,16 @@
     <item>
      <widget class="QLineEdit" name="username">
       <property name="styleSheet">
-       <string notr="true">color: #aaa;
-background-color: #fff;
+       <string notr="true">background-color: #fff;
 margin: 0% 5%;
 padding: 7% 0;
 border-radius:5px;
 border: 1px solid groove grey;</string>
       </property>
       <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
        <string>用户名/学号</string>
       </property>
      </widget>
@@ -48,14 +50,16 @@ border: 1px solid groove grey;</string>
     <item>
      <widget class="QLineEdit" name="password">
       <property name="styleSheet">
-       <string notr="true">color: #aaa;
-background-color: #fff;
+       <string notr="true">background-color: #fff;
 margin: 0% 5%;
 padding: 7% 0;
 border-radius:5px;
 border: 1px solid groove grey;</string>
       </property>
       <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
        <string>密码</string>
       </property>
      </widget>
