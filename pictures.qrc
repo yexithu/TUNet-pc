@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/pic">
-        <file>logo.jpg</file>
+        <file>images/logo.jpg</file>
+        <file>images/password.png</file>
+        <file>images/username.png</file>
     </qresource>
 </RCC>
