@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtNetwork>
+#include <QSettings>
 
 namespace Ui {
 class LoginUi;
@@ -24,6 +25,7 @@ private:
     QString url;
     QString username;
     QString password;
+    QSettings settings;
 
 private slots:
     void selectSavePassword(int state);
