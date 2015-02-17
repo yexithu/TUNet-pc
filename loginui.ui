@@ -25,22 +25,38 @@
   <property name="windowTitle">
    <string>LoginUi</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>11</y>
      <width>311</width>
-     <height>321</height>
+     <height>331</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QWidget" name="logo" native="true">
-      <property name="styleSheet">
-       <string notr="true">border-image: url(:/pic/images/logo.jpg);</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QWidget" name="logo" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>110</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>110</width>
+          <height>105</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/imgs/images/logo.png);</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -59,7 +75,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/pic/images/username.png);</string>
+         <string notr="true">border-image: url(:/imgs/images/username.png);</string>
         </property>
        </widget>
       </item>
@@ -95,7 +111,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-image: url(:/pic/images/password.png);</string>
+         <string notr="true">border-image: url(:/imgs/images/password.png);</string>
         </property>
        </widget>
       </item>

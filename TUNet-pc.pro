@@ -30,6 +30,6 @@ FORMS    += loginui.ui \
 QT += network
 
 RESOURCES += \
-    pictures.qrc
+    resource.qrc
 
 OTHER_FILES +=
