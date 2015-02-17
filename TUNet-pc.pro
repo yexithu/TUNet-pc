@@ -31,3 +31,5 @@ QT += network
 
 RESOURCES += \
     pictures.qrc
+
+OTHER_FILES +=

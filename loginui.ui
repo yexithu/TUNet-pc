@@ -10,6 +10,18 @@
     <height>350</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>350</width>
+    <height>350</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>LoginUi</string>
   </property>
@@ -33,11 +45,7 @@
     <item>
      <widget class="QLineEdit" name="username">
       <property name="styleSheet">
-       <string notr="true">background-color: #fff;
-margin: 0% 5%;
-padding: 7% 0;
-border-radius:5px;
-border: 1px solid groove grey;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -50,11 +58,7 @@ border: 1px solid groove grey;</string>
     <item>
      <widget class="QLineEdit" name="password">
       <property name="styleSheet">
-       <string notr="true">background-color: #fff;
-margin: 0% 5%;
-padding: 7% 0;
-border-radius:5px;
-border: 1px solid groove grey;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -91,14 +95,10 @@ border: 1px solid groove grey;</string>
     <item>
      <widget class="QPushButton" name="loginButton">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(96, 186, 255);
-border-radius:5px;
-margin: 5% 5%;
-padding: 10% 0;
-color: #eeeeff;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string>登陆</string>
+       <string>登  陆</string>
       </property>
      </widget>
     </item>

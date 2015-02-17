@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("tunet");
     QApplication a(argc, argv);
     LoginUi w;
+
     w.show();
 
     return a.exec();

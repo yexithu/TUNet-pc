@@ -10,6 +10,11 @@ LoginUi::LoginUi(QWidget *parent) :
 {
     ui->setupUi(this);
     LoginUi::loadInfo();
+
+    QFile *file = new QFile("./qss/loginui.qss");
+    file->open(QFile::ReadOnly);
+    setStyleSheet(file->readAll());
+
     ui->password->setEchoMode(QLineEdit::Password);
     connect(ui->autoLogin, SIGNAL(stateChanged(int)),
             this, SLOT(selectSavePassword(int)));
