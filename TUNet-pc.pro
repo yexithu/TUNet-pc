@@ -17,15 +17,18 @@ SOURCES +=\
     main.cpp \
     controller.cpp \
     accountui.cpp \
-    network.cpp
+    network.cpp \
+    aboutui.cpp
 
 HEADERS  += loginui.h \
     controller.h \
     accountui.h \
-    network.h
+    network.h \
+    aboutui.h
 
 FORMS    += loginui.ui \
-    accountui.ui
+    accountui.ui \
+    aboutui.ui
 
 QT += network
 

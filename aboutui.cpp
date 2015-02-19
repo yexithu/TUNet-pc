@@ -1,0 +1,24 @@
+#include <QFile>
+
+#include "aboutui.h"
+#include "ui_aboutui.h"
+
+AboutUi::AboutUi(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::AboutUi)
+{
+    ui->setupUi(this);
+
+    QFile *file = new QFile(":qss/qss/aboutui.qss");
+    file->open(QFile::ReadOnly);
+    setStyleSheet(file->readAll());
+
+    connect(ui->closeButton, SIGNAL(clicked()),
+            this, SLOT(close()));
+
+}
+
+AboutUi::~AboutUi()
+{
+    delete ui;
+}

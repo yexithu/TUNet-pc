@@ -11,7 +11,7 @@ LoginUi::LoginUi(QWidget *parent) :
     ui->setupUi(this);
     LoginUi::loadInfo();
 
-    QFile *file = new QFile(":qss/qss/loginui.qss");
+    QFile *file = new QFile(":qss/qss/aboutui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
 

@@ -1,0 +1,23 @@
+QWidget#background {
+	border-image: url(:/imgs/images/background.jpg);
+}
+
+QWidget#logo {
+	border-image: url(:/imgs/images/logo.png);
+}
+
+QPushButton {
+	background-color: rgb(96, 186, 255);
+	border-radius:5px;
+	margin: 5% 5%;
+	padding: 10% 0;
+	color: #eeeeff;
+}
+
+QPushButton:hover {
+	background-color: #5aaaff;
+}
+
+QPushButton:pressed {
+	background-color: #4584c3;
+}

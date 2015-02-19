@@ -3,8 +3,10 @@
         <file>images/logo.png</file>
         <file>images/password.png</file>
         <file>images/username.png</file>
+        <file>images/background.jpg</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/loginui.qss</file>
+        <file>qss/aboutui.qss</file>
     </qresource>
 </RCC>

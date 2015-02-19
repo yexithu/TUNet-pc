@@ -1,3 +1,4 @@
+#include "aboutui.h"
 #include "loginui.h"
 #include "accountui.h"
 #include <QApplication>
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("tunet");
     QApplication::setStyle("windowxp");
     QApplication a(argc, argv);
-    LoginUi w;
+    AboutUi w;
 
     w.show();
 
