@@ -1,3 +1,26 @@
+QLabel#tunet {
+	font-size: 24pt;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+QLabel#labmu {
+	font-size: 14pt;
+	color: #ffffff;
+}
+
+QLabel#developers,#designers,#testers {
+	color: #cccccc;
+	qproperty-alignment: AlignRight;
+}
+
+QLabel#developersnames,#designersnames,#testersnames {
+	color: #666666;
+
+	qproperty-alignment: AlignLeft;
+}
+
+
 QWidget#background {
 	border-image: url(:/imgs/images/background.jpg);
 }

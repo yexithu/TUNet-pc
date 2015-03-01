@@ -4,7 +4,7 @@
 #include "ui_aboutui.h"
 
 AboutUi::AboutUi(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::AboutUi)
 {
     ui->setupUi(this);

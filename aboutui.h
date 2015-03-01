@@ -1,13 +1,13 @@
 #ifndef ABOUTUI_H
 #define ABOUTUI_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class AboutUi;
 }
 
-class AboutUi : public QWidget
+class AboutUi : public QDialog
 {
     Q_OBJECT
 

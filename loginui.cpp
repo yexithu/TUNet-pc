@@ -98,3 +98,13 @@ void LoginUi::saveInfo()
     }
     settings.sync();
 }
+
+void LoginUi::loginClicked()
+{
+    emit loginSignal(ui->username->text(), ui->password->text());
+}
+
+void LoginUi::loginFail(Info info)
+{
+
+}

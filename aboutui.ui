@@ -41,29 +41,31 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>13</y>
       <width>276</width>
-      <height>311</height>
+      <height>321</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>2</number>
-       </property>
-       <property name="bottomMargin">
-        <number>15</number>
-       </property>
        <item>
-        <widget class="QLabel" name="tunet">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;TUNet 1.0&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;Lab μ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="tunet">
+           <property name="text">
+            <string>TUNet 1.0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labmu">
+           <property name="text">
+            <string>Lab μ</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QWidget" name="logo" native="true">
@@ -108,7 +110,7 @@
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;&gt;Developers&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Developers</string>
            </property>
           </widget>
          </item>
@@ -127,7 +129,7 @@
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;&gt;Designers&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Designers</string>
            </property>
           </widget>
          </item>
@@ -146,7 +148,7 @@
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; color:#cccccc;&quot;&gt;Testers&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>Testers</string>
            </property>
           </widget>
          </item>
@@ -172,7 +174,7 @@
             <number>1</number>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#666666;&quot;&gt;何钦尧 岳大禹 黄维啸 张阳坤&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#666666;&quot;&gt;叶曦 方块 蘑菇&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>黄维啸 叶曦 方块 蘑菇</string>
            </property>
           </widget>
          </item>
@@ -194,7 +196,7 @@
             <number>1</number>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#666666;&quot;&gt;何钦尧 黄维啸 方块&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>黄维啸 方块</string>
            </property>
           </widget>
          </item>
@@ -216,7 +218,7 @@
             <number>1</number>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#666666;&quot;&gt;何钦尧 岳大禹 黄维啸 张阳坤&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>何钦尧 岳大禹 张阳坤</string>
            </property>
           </widget>
          </item>

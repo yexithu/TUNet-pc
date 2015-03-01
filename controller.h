@@ -2,19 +2,22 @@
 #define CONTROLLER_H
 
 #include "loginui.h"
+#include "accountui.h"
+#include "info.h"
+#include "network.h"
 
-class Controller
+class Controller : public QObject
 {
+    Q_OBJECT
+
 public:
     Controller();
     ~Controller();
 
-private slots:
-    void loginControl(QString username, QString password);
-    void logoutControl();
-    void loginRespond(QString respond);
-    void queryRespond(QString respond);
-    void logoutRespond(QString respond);
+private:
+    Network *network;
+    LoginUi *loginUi;
+    AccountUi *accountUi;
 };
 
 #endif // CONTROLLER_H
