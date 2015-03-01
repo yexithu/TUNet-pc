@@ -1,6 +1,8 @@
 #ifndef ACCOUNTUI_H
 #define ACCOUNTUI_H
 
+#include "aboutui.h"
+#include "info.h"
 #include <QWidget>
 
 namespace Ui {
@@ -15,11 +17,19 @@ public:
     explicit AccountUi(QWidget *parent = 0);
     ~AccountUi();
 
+private:
+    Ui::AccountUi *ui;
+    AboutUi *aboutUi;
+
 signals:
     void logoutSignal();
 
-private:
-    Ui::AccountUi *ui;
+private slots:
+    void logoutClicked();
+
+public slots:
+    void infoSlot(Info);
+    void logoutFail(Info);
 };
 
 #endif // ACCOUNTUI_H

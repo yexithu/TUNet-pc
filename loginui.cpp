@@ -11,7 +11,7 @@ LoginUi::LoginUi(QWidget *parent) :
     ui->setupUi(this);
     LoginUi::loadInfo();
 
-    QFile *file = new QFile(":qss/qss/loginui.qss");
+    QFile *file = new QFile(":qss/qss/aboutui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
 
@@ -97,4 +97,14 @@ void LoginUi::saveInfo()
         settings.setValue("Password", tempPassword);
     }
     settings.sync();
+}
+
+void LoginUi::loginClicked()
+{
+    emit loginSignal(ui->username->text(), ui->password->text());
+}
+
+void LoginUi::loginFail(Info info)
+{
+
 }

@@ -1,6 +1,8 @@
 #ifndef LOGINUI_H
 #define LOGINUI_H
 
+#include "info.h"
+
 #include <QWidget>
 #include <QtNetwork>
 #include <QSettings>
@@ -32,6 +34,10 @@ private slots:
     void disselectAutoLogin(int state);
     void loadInfo();
     void saveInfo();
+    void loginClicked();
+
+public slots:
+    void loginFail(Info);
 };
 
 #endif // LOGINUI_H
