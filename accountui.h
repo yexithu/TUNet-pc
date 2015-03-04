@@ -12,7 +12,6 @@ class AccountUi;
 class AccountUi : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit AccountUi(QWidget *parent = 0);
     ~AccountUi();

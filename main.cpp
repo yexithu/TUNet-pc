@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("tunet");
     QApplication::setStyle("windowxp");
     QApplication a(argc, argv);
-    AccountUi about;
+    LoginUi about;
     about.show();
 
     return a.exec();

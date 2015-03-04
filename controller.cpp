@@ -5,19 +5,22 @@ Controller::Controller()
     network = new Network;
     loginUi = new LoginUi;
     accountUi = new AccountUi;
+	timer = new QTimer;
 
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
             network, SLOT(loginSlot(QString, QString)));
 
     //登陆成功
-    connect(network, SIGNAL(infoSignal(Info)),
+	connect(network, SIGNAL(loginSucceed(Info)),
             accountUi, SLOT(infoSlot(Info)));
-    connect(network, SIGNAL(infoSignal(Info)),
+	connect(network, SIGNAL(loginSucceed(Info)),
             loginUi, SLOT(hide()));
-    connect(network, SIGNAL(infoSignal(Info)),
+	connect(network, SIGNAL(loginSucceed(Info)),
             accountUi, SLOT(show()));
-
+	connect(network, SIGNAL(loginSucceed(Info)),
+		this, SLOT(setTimer()));
+	
     //登录失败
     connect(network, SIGNAL(loginFail(Info)),
             loginUi, SLOT(loginFail(Info)));
@@ -26,6 +29,9 @@ Controller::Controller()
     connect(network, SIGNAL(loginFail(Info)),
             accountUi, SLOT(hide()));
 
+	//定时查询
+	connect(timer, SIGNAL(timeout()),
+		network, SLOT(querySlot()));
 
     //断开
     connect(accountUi, SIGNAL(logoutSignal()),
@@ -42,6 +48,10 @@ Controller::Controller()
             accountUi, SLOT(logoutFail(Info)));
 }
 
+void Controller::setTimer()
+{
+
+}
 Controller::~Controller()
 {
 }
