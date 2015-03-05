@@ -31,6 +31,7 @@ public:
         LogoutInfo,
         QueryInfo
     };
+    InfoType infoType;
     AccountInfo *accountInfo;
 };
 

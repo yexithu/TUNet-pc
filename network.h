@@ -4,6 +4,8 @@
 #include "info.h"
 #include <QObject>
 #include <QtNetwork>
+#include <QtWebKit>
+#include <QtWebKitWidgets>
 
 class Network : public QObject
 {
@@ -24,6 +26,9 @@ private:
     };
     RequestType requestType = LoginRequest; 
     Info *info;
+
+    void getUserInfo(const QString &replyString);
+    void getIpInfo(const QString &replyString);
 public slots:
     void loginSlot(QString, QString);
     void logoutSlot();
