@@ -15,15 +15,15 @@ public:
     ~Controller();
 
 private:
-	QTimer *timer;
+    QTimer *timer;
     Network *network;
     LoginUi *loginUi;
     AccountUi *accountUi;
 signals:
-	void querySignal(QString, QString);
+    void querySignal(QString, QString);
 private slots:
-	void setTimer();
-	void onTimeOut();
+    void setTimer();
+    void onTimeOut();
 };
 
 #endif // CONTROLLER_H

@@ -14,26 +14,26 @@ public:
     ~Network();
 private:
     QNetworkAccessManager *manager;
-	enum RequestType
-	{
-		LoginRequest = 0,
-		LogoutRequest,
-		FirstQueryRequest,
-		SecondQueryRequest,
-		ThirdQueryRequest,
-	};
-	RequestType requestType = LoginRequest; 
-	Info *info;
+    enum RequestType
+    {
+        LoginRequest = 0,
+        LogoutRequest,
+        FirstQueryRequest,
+        SecondQueryRequest,
+        ThirdQueryRequest,
+    };
+    RequestType requestType = LoginRequest; 
+    Info *info;
 public slots:
-	void loginSlot(QString, QString);
+    void loginSlot(QString, QString);
     void logoutSlot();
-	void querySlot(QString, QString);
+    void querySlot(QString, QString);
 
 private slots:
-	void replyFinished(QNetworkReply*);
+    void replyFinished(QNetworkReply*);
 signals:
     void infoSignal(Info);
-	void loginSucceed(Info);
+    void loginSucceed(Info);
     void logoutSucceed();
     void loginFail(Info);
     void logoutFail(Info);

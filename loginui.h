@@ -18,8 +18,8 @@ class LoginUi : public QWidget
 public:
     explicit LoginUi(QWidget *parent = 0);
     ~LoginUi();
-	QString username;
-	QString password;
+    QString username;
+    QString password;
 
 signals:
     void loginSignal(QString username, QString password);

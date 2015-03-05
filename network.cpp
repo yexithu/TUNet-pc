@@ -3,7 +3,7 @@
 Network::Network()
 {
     manager = new QNetworkAccessManager;
-	connect(manager, SIGNAL(finished(QNetworkReply*)),
+    connect(manager, SIGNAL(finished(QNetworkReply*)),
 		this, SLOT(replyFinished(QNetworkReply*)));
 }
 
@@ -21,10 +21,9 @@ void Network::logoutSlot()
 
 void Network::querySlot(QString, QString)
 {
-
 }
 
 void Network::replyFinished(QNetworkReply*)
 {
-
+    
 }
