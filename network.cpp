@@ -19,8 +19,9 @@ void Network::logoutSlot()
 {
 }
 
-void Network::querySlot()
+void Network::querySlot(QString, QString)
 {
+
 }
 
 void Network::replyFinished(QNetworkReply*)

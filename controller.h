@@ -19,8 +19,11 @@ private:
     Network *network;
     LoginUi *loginUi;
     AccountUi *accountUi;
+signals:
+	void querySignal(QString, QString);
 private slots:
 	void setTimer();
+	void onTimeOut();
 };
 
 #endif // CONTROLLER_H

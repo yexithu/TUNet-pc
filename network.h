@@ -22,11 +22,12 @@ private:
 		SecondQueryRequest,
 		ThirdQueryRequest,
 	};
-	RequestType requestType; 
+	RequestType requestType = LoginRequest; 
+	Info *info;
 public slots:
 	void loginSlot(QString, QString);
     void logoutSlot();
-	void querySlot();
+	void querySlot(QString, QString);
 
 private slots:
 	void replyFinished(QNetworkReply*);

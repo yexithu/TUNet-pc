@@ -31,7 +31,11 @@ Controller::Controller()
 
 	//定时查询
 	connect(timer, SIGNAL(timeout()),
-		network, SLOT(querySlot()));
+		network, SLOT(onTimeOut()));
+	connect(this, SIGNAL(querySignal(QString, QString)),
+		network, SLOT(querySlot(QString, QString)));
+	connect(network, SIGNAL(infoSignal(Info)),
+		accountUi, SLOT(infoSlot(Info)));
 
     //断开
     connect(accountUi, SIGNAL(logoutSignal()),
@@ -50,7 +54,10 @@ Controller::Controller()
 
 void Controller::setTimer()
 {
-
+}
+void Controller::onTimeOut()
+{
+	emit querySignal(loginUi->username, loginUi->password);
 }
 Controller::~Controller()
 {

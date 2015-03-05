@@ -4,7 +4,7 @@
 #include <QString>
 typedef struct IpInfo
 {
-	QString ipv4_Ip; //ip地址
+	int ipv4_Ip[3]; //ip地址
 	QString macAdress; //mac地址
 	double accurateTraffic; //该ip精确流量
 }IpInfo;
@@ -25,7 +25,13 @@ public:
     Info();
     ~Info();
 public:
-	AccountInfo accountInfo;
+	enum InfoType
+	{
+		LoginInfo = 0,
+		LogoutInfo,
+		QueryInfo
+	};
+	AccountInfo *accountInfo;
 };
 
 #endif // INFO_H
