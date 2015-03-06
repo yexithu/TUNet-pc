@@ -3,7 +3,8 @@
 # Project created by QtCreator 2015-02-11T17:30:48
 #
 #-------------------------------------------------
-
+QT       += webkit
+QT       += webkitwidgets
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

@@ -25,7 +25,7 @@ private:
         ThirdQueryRequest,
     };
     RequestType requestType = LoginRequest; 
-    Info *info;
+    Info info;
 
     void getUserInfo(const QString &replyString);
     void getIpInfo(const QString &replyString);
