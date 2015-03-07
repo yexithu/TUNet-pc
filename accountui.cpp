@@ -17,6 +17,8 @@ AccountUi::AccountUi(QWidget *parent) :
 
     connect(ui->aboutButton, SIGNAL(clicked()),
             aboutUi, SLOT(exec()));
+    connect(ui->logoutButton, SIGNAL(clicked()),
+            this, SLOT(logoutClicked()));
 }
 
 AccountUi::~AccountUi()
