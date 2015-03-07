@@ -11,6 +11,5 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     LoginUi about;
     about.show();
-
     return a.exec();
 }
