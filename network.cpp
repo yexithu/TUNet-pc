@@ -173,7 +173,7 @@ void Network::loginSlot(QString username, QString password)
     }
 
     //Generate request packet and send it
-    QString data = "username=" + username + "&password=" + hashedPassword + "&mac=" + mac + "&drop=0&type=2&n=100";
+    QString data = "username=" + username + "&password=" + hashedPassword + "&mac=" + mac + "&drop=0&type=1&n=100";
     QNetworkRequest request(QUrl("http://net.tsinghua.edu.cn/cgi-bin/do_login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     loginReply = manager->post(request, data.toLatin1());
