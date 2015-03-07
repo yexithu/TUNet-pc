@@ -1,4 +1,4 @@
-#include "network.h"
+﻿#include "network.h"
 
 Network::Network()
 {
@@ -267,4 +267,3 @@ void Network::checkFinished()
     }
     reply->deleteLater();
 }
-
