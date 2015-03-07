@@ -11,10 +11,10 @@ Network::~Network()
 
 void Network::querySlot(QString username, QString password)
 {
-    //ÉèÖÃqueryInfoÀàĞÍÒÔ¼°ÊµÀı»¯queryInfo
+    //è®¾ç½®queryInfoç±»å‹ä»¥åŠå®ä¾‹åŒ–queryInfo
     queryInfo.infoType = Info::QueryInfo;
     queryInfo.accountInfo = new AccountInfo;
-    queryInfo.accountInfo->userName = username;//ÉèÖÃqueryInfoµÄÓÃ»§Ãû
+    queryInfo.accountInfo->userName = username;//è®¾ç½®queryInfoçš„ç”¨æˆ·å
 
     QByteArray postData;
     QNetworkRequest request;
@@ -33,7 +33,7 @@ void Network::queryFinished()
     QString replyString;
     QTextCodec *codec = QTextCodec::codecForName("GB2312");
     replyString = codec->toUnicode((reply->readAll()));
-    //¶ÁÈ¡reply
+    //è¯»å–reply
 
     switch (requestType)
     {
@@ -70,8 +70,8 @@ void Network::queryFinished()
 }
 
 
-//½âÎöhttp://usereg.tsinghua.edu.cn/user_info.php
-//²¢ĞŞ¸ÄĞÅÏ¢
+//è§£æhttp://usereg.tsinghua.edu.cn/user_info.php
+//å¹¶ä¿®æ”¹ä¿¡æ¯
 void Network::getUserInfo(const QString &replyString)
 {
     QWebPage page;
@@ -82,10 +82,10 @@ void Network::getUserInfo(const QString &replyString)
     QWebElement body = doc.findFirst("body");
     QWebElementCollection all = body.findAll("td");
 
-    //»ñÈ¡Óà¶î
+    //è·å–ä½™é¢
     temp = all[42].toPlainText();
     queryInfo.accountInfo->balance = temp.left(temp.length() - 3).toDouble();
-    //»ñÈ¡µÇÂ½Ê±Á÷Á¿
+    //è·å–ç™»é™†æ—¶æµé‡
     temp = all[36].toPlainText();
     for (int i = 0; i < temp.length(); i++)
     {
@@ -100,7 +100,7 @@ void Network::getUserInfo(const QString &replyString)
 
 void Network::getIpInfo(const QString &replyString)
 {
-    //ÒÆ³ı×¢ÊÍ
+    //ç§»é™¤æ³¨é‡Š
     QString replyStringPlus = replyString;
     replyStringPlus.remove("<!--", Qt::CaseSensitive);
     replyStringPlus.remove("<!--", Qt::CaseSensitive);
@@ -118,7 +118,7 @@ void Network::getIpInfo(const QString &replyString)
     queryInfo.accountInfo->totalAccurateTraffic = queryInfo.accountInfo->roughTraffic;
     for (int i = 0; i < queryInfo.accountInfo->onlineIpCount; i++)
     {
-        //ipµØÖ·
+        //ipåœ°å€
         temp = all[27 + 20 * i].toPlainText();
         int dotAdress[3];
         for (int k = 0, j = 0; k < temp.length(); k++)
@@ -134,7 +134,7 @@ void Network::getIpInfo(const QString &replyString)
         queryInfo.accountInfo->ipInfo[i].ipv4_Ip[2] = temp.mid(dotAdress[1] + 1, dotAdress[2] - dotAdress[1] - 1).toInt();
         queryInfo.accountInfo->ipInfo[i].ipv4_Ip[3] = temp.mid(dotAdress[2] + 1).toInt();
         
-        //ÈëÁ÷Á¿
+        //å…¥æµé‡
         temp = all[28 + 20 * i].toPlainText();
         queryInfo.accountInfo->ipInfo[i].accurateTraffic = temp.left(temp.length() - 1).toDouble();
         if (temp[temp.length() - 1] == 'K')  queryInfo.accountInfo->ipInfo[i].accurateTraffic *= 1024;
@@ -142,7 +142,7 @@ void Network::getIpInfo(const QString &replyString)
         if (temp[temp.length() - 1] == 'G')  queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1024 * 1024 * 1024);
         queryInfo.accountInfo->totalAccurateTraffic += queryInfo.accountInfo->ipInfo[i].accurateTraffic;
 
-        //Ê±¼ä
+        //æ—¶é—´
         temp = all[38 + 20 * i].toPlainText();
         queryInfo.accountInfo->ipInfo[i].onlineTime[0] = temp.mid(temp.length() - 8, 2).toInt();
         queryInfo.accountInfo->ipInfo[i].onlineTime[1] = temp.mid(temp.length() - 5, 2).toInt();
