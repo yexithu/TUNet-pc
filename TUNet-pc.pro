@@ -19,18 +19,21 @@ SOURCES +=\
     accountui.cpp \
     network.cpp \
     aboutui.cpp \
-    info.cpp
+    info.cpp \
+    loadingui.cpp
 
 HEADERS  += loginui.h \
     controller.h \
     accountui.h \
     network.h \
     aboutui.h \
-    info.h
+    info.h \
+    loadingui.h
 
 FORMS    += loginui.ui \
     accountui.ui \
-    aboutui.ui
+    aboutui.ui \
+    loadingui.ui
 
 QT += network
 
