@@ -171,12 +171,14 @@ void Network::loginSlot(QString username, QString password)
             break;
         }
     }
+
     //Generate request packet and send it
     QString data = "username=" + username + "&password=" + hashedPassword + "&mac=" + mac + "&drop=0&type=2&n=100";
     QNetworkRequest request(QUrl("http://net.tsinghua.edu.cn/cgi-bin/do_login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     loginReply = manager->post(request, data.toLatin1());
     connect(loginReply, SIGNAL(finished()), this, SLOT(loginFinished()));
+
 }
 
 void Network::logoutSlot()

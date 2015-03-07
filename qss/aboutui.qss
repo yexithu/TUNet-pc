@@ -1,11 +1,11 @@
 QLabel#tunet {
-	font-size: 24pt;
+	font-size: 24px;
 	font-weight: 600;
 	color: #ffffff;
 }
 
 QLabel#labmu {
-	font-size: 14pt;
+	font-size: 14px;
 	color: #ffffff;
 }
 
@@ -16,7 +16,6 @@ QLabel#developers,#designers,#testers {
 
 QLabel#developersnames,#designersnames,#testersnames {
 	color: #666666;
-
 	qproperty-alignment: AlignLeft;
 }
 

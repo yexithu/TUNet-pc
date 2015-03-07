@@ -12,5 +12,6 @@
         <file>qss/loginui.qss</file>
         <file>qss/aboutui.qss</file>
         <file>qss/accountui.qss</file>
+        <file>qss/loadingui.qss</file>
     </qresource>
 </RCC>
