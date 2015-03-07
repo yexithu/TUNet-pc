@@ -22,6 +22,8 @@ LoginUi::LoginUi(QWidget *parent) :
             this, SLOT(disselectAutoLogin(int)));
     connect(ui->loginButton, SIGNAL(clicked()),
             this, SLOT(saveInfo()));
+    connect(ui->loginButton, SIGNAL(clicked()),
+            this, SLOT(loginClicked()));
 }
 
 LoginUi::~LoginUi()

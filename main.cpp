@@ -2,6 +2,7 @@
 #include "loginui.h"
 #include "loadingui.h"
 #include "accountui.h"
+#include "controller.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -10,7 +11,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("lab.mu");
     QCoreApplication::setApplicationName("tunet");
     QApplication a(argc, argv);
-    LoginUi about;
-    about.show();
+    Controller controller;
     return a.exec();
 }
