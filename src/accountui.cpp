@@ -31,14 +31,23 @@ void AccountUi::logoutClicked()
     emit logoutSignal();
 }
 
+QString timeForm(int k)
+{
+    if (k < 10)
+        return "0" + QString::number(k);
+    else
+        return QString::number(k);
+}
+
 void AccountUi::infoSlot(Info info)
 {
     double flow = info.accountInfo->totalAccurateTraffic/1000/1000/1000;
     int time = this -> onlineTime;
     double money = info.accountInfo->balance;
-    QString flowText = QString::number(flow, 'f', 2)+"GB";
-    QString timeText = QString::number(time / 60 / 60)+":"+QString::number(time / 60 % 60)+":"+QString::number(time % 60);
-    QString moneyText = QString::number(money, 'f', 2)+"RMB";
+    QString flowText = QString::number(flow, 'f', 2) + "GB";
+    QString timeText = timeForm(time / 60 / 60)+":" + timeForm(time / 60 % 60) + ":" + timeForm(time % 60);
+    QString moneyText = QString::number(money, 'f', 2) + "RMB";
+    ui->username->setText(info.accountInfo->userName);
     ui->flowNumber->setText(flowText);
     ui->timeNumber->setText(timeText);
     ui->moneyNumber->setText(moneyText);

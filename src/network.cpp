@@ -102,6 +102,7 @@ void Network::getUserInfo(const QString &replyString)
         }
     }
     queryInfo.accountInfo->roughTraffic = temp.toDouble();
+    frame->deleteLater();
 }
 
 void Network::getIpInfo(const QString &replyString)
@@ -160,6 +161,7 @@ void Network::getIpInfo(const QString &replyString)
         temp = all[41 + 20 * i].toPlainText();
         queryInfo.accountInfo->ipInfo[i].macAdress = temp;
     }
+    frame->deleteLater();
 }
 
 void Network::loginSlot(QString username, QString password)
