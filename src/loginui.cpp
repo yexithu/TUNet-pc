@@ -103,6 +103,7 @@ void LoginUi::saveInfo()
 
 void LoginUi::loginClicked()
 {
+    username = ui->username->text(); password = ui->password->text();
     emit loginSignal(ui->username->text(), ui->password->text());
 }
 

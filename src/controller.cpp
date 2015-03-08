@@ -32,7 +32,7 @@ Controller::Controller()
 
     //定时查询
     connect(timer, SIGNAL(timeout()),
-            network, SLOT(onTimeOut()));
+            this, SLOT(onTimeOut()));
     connect(this, SIGNAL(querySignal(QString, QString)),
             network, SLOT(querySlot(QString, QString)));
     connect(network, SIGNAL(infoSignal(Info)),
@@ -56,6 +56,8 @@ Controller::Controller()
 
 void Controller::setTimer()
 {
+    timer->setInterval(1000);
+    timer->start();
 }
 
 void Controller::onTimeOut()
