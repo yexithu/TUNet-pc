@@ -58,6 +58,8 @@ Controller::Controller()
 
 void Controller::setTimer()
 {
+    timer->setInterval(1000);
+    timer->start();
 }
 
 void Controller::onTimeOut()

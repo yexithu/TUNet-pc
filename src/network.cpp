@@ -11,6 +11,7 @@ Network::~Network()
 
 void Network::querySlot(QString username, QString password)
 {
+
     //设置queryInfo类型以及实例化queryInfo
     queryInfo.infoType = Info::QueryInfo;
     queryInfo.accountInfo = new AccountInfo;
@@ -18,7 +19,7 @@ void Network::querySlot(QString username, QString password)
 
     QByteArray postData;
     QNetworkRequest request;
-    postData.append("action=login"); postData.append("&" + username); postData.append("&" + password);
+    postData.append("action=login"); postData.append("&user_login_name="+username); postData.append("&user_password=" + password);
     request.setUrl(QUrl("http://usereg.tsinghua.edu.cn/do.php"));
     request.setHeader(QNetworkRequest::ContentLengthHeader, postData.length());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -34,23 +35,25 @@ void Network::queryFinished()
     QTextCodec *codec = QTextCodec::codecForName("GB2312");
     replyString = codec->toUnicode((reply->readAll()));
     //读取reply
-
     switch (requestType) {
     case Network::FirstQueryRequest: {
         if (replyString == "ok") {
             requestType = Network::SecondQueryRequest;
             QNetworkRequest secondQueryRequest;
             secondQueryRequest.setUrl(QUrl("http://usereg.tsinghua.edu.cn/user_info.php"));
-            manager->get(secondQueryRequest);
+            queryReply = manager->get(secondQueryRequest);
+            connect(queryReply, SIGNAL(finished()), this, SLOT(queryFinished()));
         }
         break;
     }
 
     case Network::SecondQueryRequest: {
+        getUserInfo(replyString);
         requestType = Network::ThirdQueryRequest;
         QNetworkRequest thirdQueryRequest;
         thirdQueryRequest.setUrl(QUrl("http://usereg.tsinghua.edu.cn/online_user_ipv4.php"));
-        manager->get(thirdQueryRequest);
+        queryReply = manager->get(thirdQueryRequest);
+        connect(queryReply, SIGNAL(finished()), this, SLOT(queryFinished()));
         break;
     }
             
