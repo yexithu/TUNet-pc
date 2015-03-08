@@ -64,6 +64,7 @@ void Controller::setTimer()
 
 void Controller::onTimeOut()
 {
+    ++accountUi->onlineTime;
     emit querySignal(loginUi->username, loginUi->password);
 }
 

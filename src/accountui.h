@@ -16,6 +16,9 @@ public:
     explicit AccountUi(QWidget *parent = 0);
     ~AccountUi();
 
+public:
+    int onlineTime = 0;
+
 private:
     Ui::AccountUi *ui;
     AboutUi *aboutUi;
