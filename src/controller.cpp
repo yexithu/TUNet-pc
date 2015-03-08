@@ -6,7 +6,9 @@ Controller::Controller()
     loginUi = new LoginUi;
     accountUi = new AccountUi;
     timer = new QTimer;
+
     loginUi->show();
+    timer->start(1000);
 
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
@@ -32,7 +34,7 @@ Controller::Controller()
 
     //定时查询
     connect(timer, SIGNAL(timeout()),
-            network, SLOT(onTimeOut()));
+            this, SLOT(onTimeOut()));
     connect(this, SIGNAL(querySignal(QString, QString)),
             network, SLOT(querySlot(QString, QString)));
     connect(network, SIGNAL(infoSignal(Info)),

@@ -31,8 +31,22 @@ void AccountUi::logoutClicked()
     emit logoutSignal();
 }
 
+#include <QDebug>
 void AccountUi::infoSlot(Info info)
 {
+    qDebug()<<info.accountInfo->totalAccurateTraffic;
+    qDebug()<<info.accountInfo->loginTime;
+    qDebug()<<info.accountInfo->balance;
+    double tmp1=10;
+    double tmp2=20;
+    double tmp3=30;
+    QString flow = QString::number(tmp1, 'f', 2)+"GB";
+    QString time = QString::number(tmp2, 'f', 0)+":"+QString::number(tmp2, 'f', 0)+":"+QString::number(tmp2, 'f', 0);
+    QString money = QString::number(tmp3, 'f', 2)+"RMB";
+    ui->flowNumber->setText(flow);
+    ui->timeNumber->setText(time);
+    ui->moneyNumber->setText(money);
+
 }
 
 void AccountUi::logoutFail(Info info)

@@ -100,7 +100,7 @@ void Network::getIpInfo(const QString &replyString)
     //移除注释
     QString replyStringPlus = replyString;
     replyStringPlus.remove("<!--", Qt::CaseSensitive);
-    replyStringPlus.remove("<!--", Qt::CaseSensitive);
+    replyStringPlus.remove("-->", Qt::CaseSensitive);
     QWebPage page;
     QWebFrame *frame = page.mainFrame();
     frame->setHtml(replyStringPlus);
