@@ -24,7 +24,7 @@ Controller::Controller()
     
     //登录失败
     connect(network, SIGNAL(loginFail(Info)),
-            loginUi, SLOT(loginFail(Info)));
+            loginUi, SLOT(loginFailDialog(Info)));
     connect(network, SIGNAL(loginFail(Info)),
             loginUi, SLOT(show()));
     connect(network, SIGNAL(loginFail(Info)),

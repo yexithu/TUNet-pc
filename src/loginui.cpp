@@ -106,7 +106,8 @@ void LoginUi::loginClicked()
     emit loginSignal(ui->username->text(), ui->password->text());
 }
 
-void LoginUi::loginFail(Info info)
+void LoginUi::loginFailDialog(Info info)
 {
-
+    loginFail = new LoginFail(info.accountInfo->error);
+    loginFail->exec();
 }

@@ -7,11 +7,13 @@
         <file>images/flow.png</file>
         <file>images/money.png</file>
         <file>images/time.png</file>
+        <file>images/logo2.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/loginui.qss</file>
         <file>qss/aboutui.qss</file>
         <file>qss/accountui.qss</file>
         <file>qss/loadingui.qss</file>
+        <file>qss/loginfail.qss</file>
     </qresource>
 </RCC>

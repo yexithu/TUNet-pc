@@ -12,7 +12,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = TUNet-pc
 TEMPLATE = app
 
-
 SOURCES += \
     src/loginui.cpp \
     src/main.cpp \
@@ -21,7 +20,8 @@ SOURCES += \
     src/network.cpp \
     src/aboutui.cpp \
     src/info.cpp \
-    src/loadingui.cpp
+    src/loadingui.cpp \
+    src/loginfail.cpp
 
 HEADERS  += \
     src/loginui.h \
@@ -30,13 +30,15 @@ HEADERS  += \
     src/network.h \
     src/aboutui.h \
     src/info.h \
-    src/loadingui.h
+    src/loadingui.h \
+    src/loginfail.h
 
 FORMS    += \
     form/loginui.ui \
     form/accountui.ui \
     form/aboutui.ui \
-    form/loadingui.ui
+    form/loadingui.ui \
+    form/loginfail.ui
 
 QT += network
 
