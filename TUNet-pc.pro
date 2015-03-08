@@ -13,32 +13,34 @@ TARGET = TUNet-pc
 TEMPLATE = app
 
 
-SOURCES +=\
-        loginui.cpp \
-    main.cpp \
-    controller.cpp \
-    accountui.cpp \
-    network.cpp \
-    aboutui.cpp \
-    info.cpp \
-    loadingui.cpp
+SOURCES += \
+    src/loginui.cpp \
+    src/main.cpp \
+    src/controller.cpp \
+    src/accountui.cpp \
+    src/network.cpp \
+    src/aboutui.cpp \
+    src/info.cpp \
+    src/loadingui.cpp
 
-HEADERS  += loginui.h \
-    controller.h \
-    accountui.h \
-    network.h \
-    aboutui.h \
-    info.h \
-    loadingui.h
+HEADERS  += \
+    src/loginui.h \
+    src/controller.h \
+    src/accountui.h \
+    src/network.h \
+    src/aboutui.h \
+    src/info.h \
+    src/loadingui.h
 
-FORMS    += loginui.ui \
-    accountui.ui \
-    aboutui.ui \
-    loadingui.ui
+FORMS    += \
+    form/loginui.ui \
+    form/accountui.ui \
+    form/aboutui.ui \
+    form/loadingui.ui
 
 QT += network
 
 RESOURCES += \
-    resource.qrc
+    res/resource.qrc
 
 OTHER_FILES +=
