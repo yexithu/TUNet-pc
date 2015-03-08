@@ -1,26 +1,26 @@
-#ifndef INFO_H
+ï»¿#ifndef INFO_H
 #define INFO_H
 
 #include <QString>
 
 struct IpInfo
 {
-    int ipv4_Ip[4];  //ipµØÖ·£¬
-    int onlineTime[3];  //ÉÏÏßÊ±¼ä,Ê±£¬Ãë£¬·Ö
-    QString macAdress;  //macµØÖ·
-    double accurateTraffic;  //¸Ãip¾«È·Á÷Á¿
+    int ipv4_Ip[4];  //ipåœ°å€ï¼Œ
+    int onlineTime[3];  //ä¸Šçº¿æ—¶é—´,æ—¶ï¼Œç§’ï¼Œåˆ†
+    QString macAdress;  //macåœ°å€
+    double accurateTraffic;  //è¯¥ipç²¾ç¡®æµé‡
 };
 
 struct AccountInfo
 {
     QString error = "";  //Empty string when there's no error. Otherwise some description of the error.
     QString userName;
-    double balance;  //ÕË»§Óà¶î
-    double roughTraffic;  //´ÖÂÔÁ÷Á¿£¬BÎªµ¥Î»
-    double totalAccurateTraffic;  //×Ü¾«È·Á÷Á¿£¬BÎªµ¥Î»
+    double balance;  //è´¦æˆ·ä½™é¢
+    double roughTraffic;  //ç²—ç•¥æµé‡ï¼ŒBä¸ºå•ä½
+    double totalAccurateTraffic;  //æ€»ç²¾ç¡®æµé‡ï¼ŒBä¸ºå•ä½
     int loginTime;  //Connected times in seconds
-    int onlineIpCount;  //ipÊıÁ¿
-    IpInfo *ipInfo;  //ipĞÅÏ¢
+    int onlineIpCount;  //ipæ•°é‡
+    IpInfo *ipInfo;  //ipä¿¡æ¯
 };
 
 
