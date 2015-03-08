@@ -6,7 +6,9 @@ Controller::Controller()
     loginUi = new LoginUi;
     accountUi = new AccountUi;
     timer = new QTimer;
+
     loginUi->show();
+    timer->start(1000);
 
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
@@ -62,6 +64,7 @@ void Controller::setTimer()
 
 void Controller::onTimeOut()
 {
+    ++accountUi->onlineTime;
     emit querySignal(loginUi->username, loginUi->password);
 }
 

@@ -33,6 +33,16 @@ void AccountUi::logoutClicked()
 
 void AccountUi::infoSlot(Info info)
 {
+    double flow = info.accountInfo->totalAccurateTraffic/1000/1000/1000;
+    int time = this -> onlineTime;
+    double money = info.accountInfo->balance;
+    QString flowText = QString::number(flow, 'f', 2)+"GB";
+    QString timeText = QString::number(time / 60 / 60)+":"+QString::number(time / 60 % 60)+":"+QString::number(time % 60);
+    QString moneyText = QString::number(money, 'f', 2)+"RMB";
+    ui->flowNumber->setText(flowText);
+    ui->timeNumber->setText(timeText);
+    ui->moneyNumber->setText(moneyText);
+
 }
 
 void AccountUi::logoutFail(Info info)

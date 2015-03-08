@@ -11,6 +11,10 @@ Network::~Network()
 
 void Network::querySlot(QString username, QString password)
 {
+    //Generate MD5 hash of the password
+    QCryptographicHash hash(QCryptographicHash::Md5);
+    hash.addData(password.toLatin1());
+    QString hashedPassword = hash.result().toHex();
 
     //设置queryInfo类型以及实例化queryInfo
     queryInfo.infoType = Info::QueryInfo;
@@ -19,7 +23,9 @@ void Network::querySlot(QString username, QString password)
 
     QByteArray postData;
     QNetworkRequest request;
-    postData.append("action=login"); postData.append("&user_login_name="+username); postData.append("&user_password=" + password);
+    postData.append("action=login");
+    postData.append("&user_login_name=" + username);
+    postData.append("&user_password=" + hashedPassword);
     request.setUrl(QUrl("http://usereg.tsinghua.edu.cn/do.php"));
     request.setHeader(QNetworkRequest::ContentLengthHeader, postData.length());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -135,13 +141,13 @@ void Network::getIpInfo(const QString &replyString)
         temp = all[28 + 20 * i].toPlainText();
         queryInfo.accountInfo->ipInfo[i].accurateTraffic = temp.left(temp.length() - 1).toDouble();
         if (temp[temp.length() - 1] == 'K') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= 1024;
+            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= 1000;
         }
         if (temp[temp.length() - 1] == 'M') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1024 * 1024);
+            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1000 * 1000);
         }
         if (temp[temp.length() - 1] == 'G') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1024 * 1024 * 1024);
+            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1000 * 1000 * 1000);
         }
         queryInfo.accountInfo->totalAccurateTraffic += queryInfo.accountInfo->ipInfo[i].accurateTraffic;
 
