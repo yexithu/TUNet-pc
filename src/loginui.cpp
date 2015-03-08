@@ -1,4 +1,4 @@
-#include <cstdio>
+﻿#include <cstdio>
 #include <algorithm>
 
 #include "loginui.h"
@@ -46,10 +46,10 @@ void LoginUi::disselectAutoLogin(int state)
 void LoginUi::loadInfo()
 {
     QSettings settings;
-    if(settings.value("SavePassword",0).toBool()) {
+    if (settings.value("SavePassword",0).toBool()) {
         ui->savePassword->setCheckState(Qt::Checked);
     }
-    if(settings.value("AutoLogin",0).toBool()) {
+    if (settings.value("AutoLogin",0).toBool()) {
         ui->autoLogin->setCheckState(Qt::Checked);
     }
 

@@ -1,4 +1,4 @@
-#include "aboutui.h"
+﻿#include "aboutui.h"
 #include "loginui.h"
 #include "loadingui.h"
 #include "accountui.h"
@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setOrganizationName("Lab µ");
+    QCoreApplication::setOrganizationName("Lab mU");
     QCoreApplication::setOrganizationDomain("lab.mu");
     QCoreApplication::setApplicationName("tunet");
     QApplication a(argc, argv);

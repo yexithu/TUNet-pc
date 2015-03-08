@@ -1,4 +1,4 @@
-#ifndef LOADINGUI_H
+﻿#ifndef LOADINGUI_H
 #define LOADINGUI_H
 
 #include <QWidget>

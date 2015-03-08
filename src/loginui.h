@@ -1,4 +1,4 @@
-#ifndef LOGINUI_H
+﻿#ifndef LOGINUI_H
 #define LOGINUI_H
 
 #include "info.h"

@@ -1,4 +1,4 @@
-#include <QFile>
+﻿#include <QFile>
 
 #include "aboutui.h"
 #include "ui_aboutui.h"

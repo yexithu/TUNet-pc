@@ -1,4 +1,4 @@
-#ifndef ABOUTUI_H
+﻿#ifndef ABOUTUI_H
 #define ABOUTUI_H
 
 #include <QDialog>

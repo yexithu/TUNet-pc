@@ -1,4 +1,4 @@
-#ifndef CONTROLLER_H
+﻿#ifndef CONTROLLER_H
 #define CONTROLLER_H
 
 #include "loginui.h"
@@ -6,6 +6,7 @@
 #include "info.h"
 #include "network.h"
 #include <QTimer>
+
 class Controller : public QObject
 {
     Q_OBJECT
@@ -19,8 +20,10 @@ private:
     Network *network;
     LoginUi *loginUi;
     AccountUi *accountUi;
+
 signals:
     void querySignal(QString, QString);
+
 private slots:
     void setTimer();
     void onTimeOut();

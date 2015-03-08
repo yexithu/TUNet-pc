@@ -1,4 +1,4 @@
-#include "controller.h"
+﻿#include "controller.h"
 
 Controller::Controller()
 {
@@ -20,8 +20,8 @@ Controller::Controller()
     connect(network, SIGNAL(loginSucceed(Info)),
             accountUi, SLOT(show()));
     connect(network, SIGNAL(loginSucceed(Info)),
-		this, SLOT(setTimer()));
-	
+            this, SLOT(setTimer()));
+    
     //登录失败
     connect(network, SIGNAL(loginFail(Info)),
             loginUi, SLOT(loginFail(Info)));
@@ -30,13 +30,13 @@ Controller::Controller()
     connect(network, SIGNAL(loginFail(Info)),
             accountUi, SLOT(hide()));
 
-	//定时查询
+    //定时查询
     connect(timer, SIGNAL(timeout()),
-		network, SLOT(onTimeOut()));
+            network, SLOT(onTimeOut()));
     connect(this, SIGNAL(querySignal(QString, QString)),
-		network, SLOT(querySlot(QString, QString)));
+            network, SLOT(querySlot(QString, QString)));
     connect(network, SIGNAL(infoSignal(Info)),
-		accountUi, SLOT(infoSlot(Info)));
+            accountUi, SLOT(infoSlot(Info)));
 
     //断开
     connect(accountUi, SIGNAL(logoutSignal()),
@@ -57,10 +57,12 @@ Controller::Controller()
 void Controller::setTimer()
 {
 }
+
 void Controller::onTimeOut()
 {
     emit querySignal(loginUi->username, loginUi->password);
 }
+
 Controller::~Controller()
 {
 }

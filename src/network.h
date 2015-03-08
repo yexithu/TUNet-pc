@@ -14,29 +14,35 @@ class Network : public QObject
 public:
     Network();
     ~Network();
+
 private:
     QNetworkAccessManager *manager;
     QNetworkReply *queryReply, *loginReply, *logoutReply, *checkReply;
+
     enum RequestType
     {
         FirstQueryRequest=0,
         SecondQueryRequest,
         ThirdQueryRequest,
     };
+
     RequestType requestType = FirstQueryRequest; 
     Info queryInfo, loginInfo;
     void getUserInfo(const QString &replyString);
     void getIpInfo(const QString &replyString);
+
 public slots:
     void loginSlot(QString, QString);
     void logoutSlot();
     void querySlot(QString, QString);
-    void checkSlot();//Check whether logged in, and get conneted time.
+    void checkSlot();  //Check whether logged in, and get conneted time.
+
 private slots:
     void queryFinished();
     void loginFinished();
     void logoutFinished();
     void checkFinished();
+
 signals:
     void infoSignal(Info);
     void loginSucceed(Info);
