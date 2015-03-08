@@ -15,7 +15,9 @@ class LoadingUi : public QWidget
 public:
     explicit LoadingUi(QWidget *parent = 0);
     ~LoadingUi();
-
+    void setUsername(QString);
+signals:
+    void loginAbort();
 private:
     Ui::LoadingUi *ui;
 };

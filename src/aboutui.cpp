@@ -12,7 +12,7 @@ AboutUi::AboutUi(QWidget *parent) :
     QFile *file = new QFile(":qss/qss/aboutui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
-
+    file->deleteLater();
     connect(ui->closeButton, SIGNAL(clicked()),
             this, SLOT(close()));
 

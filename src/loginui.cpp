@@ -14,7 +14,7 @@ LoginUi::LoginUi(QWidget *parent) :
     QFile *file = new QFile(":qss/qss/loginui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
-
+    file->deleteLater();
     ui->password->setEchoMode(QLineEdit::Password);
     connect(ui->autoLogin, SIGNAL(stateChanged(int)),
             this, SLOT(selectSavePassword(int)));
@@ -28,7 +28,7 @@ LoginUi::LoginUi(QWidget *parent) :
 
 LoginUi::~LoginUi()
 {
-    delete ui;
+
 }
 
 void LoginUi::selectSavePassword(int state)
@@ -111,4 +111,6 @@ void LoginUi::loginFailDialog(Info info)
 {
     loginFail = new LoginFail(info.accountInfo->error);
     loginFail->exec();
+    delete info.accountInfo;
+    loginFail->deleteLater();
 }

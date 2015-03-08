@@ -280,3 +280,8 @@ void Network::checkFinished()
     }
     reply->deleteLater();
 }
+
+void Network::loginAbortSlot()
+{
+    loginReply->abort();
+}

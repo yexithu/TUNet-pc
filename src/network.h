@@ -36,6 +36,7 @@ public slots:
     void logoutSlot();
     void querySlot(QString, QString);
     void checkSlot();  //Check whether logged in, and get conneted time.
+    void loginAbortSlot(); //Abort login
 
 private slots:
     void queryFinished();

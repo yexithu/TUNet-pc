@@ -12,7 +12,7 @@ LoginFail::LoginFail(QString message, QWidget *parent) :
     QFile *file = new QFile(":qss/qss/loginfail.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
-
+    file->deleteLater();
     ui->text->setText(message);
     connect(ui->okButton, SIGNAL(clicked()),
             this, SLOT(close()));

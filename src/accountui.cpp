@@ -10,15 +10,17 @@ AccountUi::AccountUi(QWidget *parent) :
     ui->setupUi(this);
 
     aboutUi = new AboutUi;
-
+    timer = new QTimer;
+    timer->start(1000);
     QFile *file = new QFile(":qss/qss/accountui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
-
+    file->deleteLater();
     connect(ui->aboutButton, SIGNAL(clicked()),
             aboutUi, SLOT(exec()));
     connect(ui->logoutButton, SIGNAL(clicked()),
             this, SLOT(logoutClicked()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(timeIncrement()));
 }
 
 AccountUi::~AccountUi()
@@ -42,18 +44,35 @@ QString timeForm(int k)
 void AccountUi::infoSlot(Info info)
 {
     double flow = info.accountInfo->totalAccurateTraffic/1000/1000/1000;
-    int time = this -> onlineTime;
     double money = info.accountInfo->balance;
     QString flowText = QString::number(flow, 'f', 2) + "GB";
-    QString timeText = timeForm(time / 60 / 60)+":" + timeForm(time / 60 % 60) + ":" + timeForm(time % 60);
     QString moneyText = QString::number(money, 'f', 2) + "RMB";
     ui->username->setText(info.accountInfo->userName);
     ui->flowNumber->setText(flowText);
-    ui->timeNumber->setText(timeText);
     ui->moneyNumber->setText(moneyText);
-
+    delete info.accountInfo;
 }
 
-void AccountUi::logoutFail(Info info)
+void AccountUi::checkResultSlot(Info info)
 {
+    int timeReceived = info.accountInfo->loginTime;
+    if (onlineTime != timeReceived) {
+        onlineTime = timeReceived;
+    }
+    delete info.accountInfo;
+}
+
+void AccountUi::timeIncrement()
+{
+    onlineTime++;
+    QString timeText = timeForm(onlineTime / 60 / 60) + ":" + timeForm(onlineTime / 60 % 60) + ":" + timeForm(onlineTime % 60);
+    ui->timeNumber->setText(timeText);
+}
+
+void AccountUi::logoutFailSlot(Info info)
+{
+    logoutFail = new LoginFail(info.accountInfo->error);
+    logoutFail->exec();
+    delete info.accountInfo;
+    logoutFail->deleteLater();
 }

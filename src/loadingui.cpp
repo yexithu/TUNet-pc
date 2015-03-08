@@ -10,7 +10,14 @@ LoadingUi::LoadingUi(QWidget *parent) :
     QFile *file = new QFile(":qss/qss/loadingui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
+    file->deleteLater();
+    setWindowFlags(Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint);
+    connect(ui->cancelButton, SIGNAL(clicked()), this, SIGNAL(loginAbort()));
+}
 
+void LoadingUi::setUsername(QString name)
+{
+    ui->username->setText(name);
 }
 
 LoadingUi::~LoadingUi()
