@@ -19,7 +19,7 @@ public:
     ~AccountUi();
 
 public:
-    int onlineTime = 0;
+    int onlineTime = -1;
 
 private:
     Ui::AccountUi *ui;

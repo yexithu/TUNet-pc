@@ -149,7 +149,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>15.23GB</string>
+    <string>Loading...</string>
    </property>
   </widget>
   <widget class="QLabel" name="timeNumber">
@@ -162,7 +162,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>00:01:12</string>
+    <string>Loading...</string>
    </property>
   </widget>
   <widget class="QLabel" name="moneyNumber">
@@ -175,7 +175,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1.23RMB</string>
+    <string>Loading...</string>
    </property>
   </widget>
   <widget class="QPushButton" name="aboutButton">
