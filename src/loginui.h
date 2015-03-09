@@ -2,7 +2,7 @@
 #define LOGINUI_H
 
 #include "info.h"
-#include "loginfail.h"
+#include "failui.h"
 
 #include <QWidget>
 #include <QtNetwork>
@@ -29,7 +29,7 @@ private:
     Ui::LoginUi *ui;
     QString url;
     QSettings settings;
-    LoginFail *loginFail;
+    FailUi *loginFail;
 
 private slots:
     void selectSavePassword(int state);

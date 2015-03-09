@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LoginFail</class>
- <widget class="QWidget" name="LoginFail">
+ <class>FailUi</class>
+ <widget class="QWidget" name="FailUi">
   <property name="geometry">
    <rect>
     <x>0</x>

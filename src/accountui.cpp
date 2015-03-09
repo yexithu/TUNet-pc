@@ -71,7 +71,7 @@ void AccountUi::timeIncrement()
 
 void AccountUi::logoutFailSlot(Info info)
 {
-    logoutFail = new LoginFail(info.accountInfo->error);
+    logoutFail = new FailUi(info.accountInfo->error);
     logoutFail->exec();
     delete info.accountInfo;
     logoutFail->deleteLater();

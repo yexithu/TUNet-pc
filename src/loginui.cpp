@@ -109,7 +109,7 @@ void LoginUi::loginClicked()
 
 void LoginUi::loginFailDialog(Info info)
 {
-    loginFail = new LoginFail(info.accountInfo->error);
+    loginFail = new FailUi(info.accountInfo->error);
     loginFail->exec();
     delete info.accountInfo;
     loginFail->deleteLater();
