@@ -21,7 +21,7 @@ SOURCES += \
     src/aboutui.cpp \
     src/info.cpp \
     src/loadingui.cpp \
-    src/loginfail.cpp
+    src/failui.cpp
 
 HEADERS  += \
     src/loginui.h \
@@ -31,14 +31,14 @@ HEADERS  += \
     src/aboutui.h \
     src/info.h \
     src/loadingui.h \
-    src/loginfail.h
+    src/failui.h
 
 FORMS    += \
     form/loginui.ui \
     form/accountui.ui \
     form/aboutui.ui \
     form/loadingui.ui \
-    form/loginfail.ui
+    form/failui.ui
 
 QT += network
 

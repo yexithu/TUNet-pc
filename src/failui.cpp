@@ -1,15 +1,15 @@
-#include "loginfail.h"
-#include "ui_loginfail.h"
+#include "failui.h"
+#include "ui_failui.h"
 
 #include <QDebug>
 
-LoginFail::LoginFail(QString message, QWidget *parent) :
+FailUi::FailUi(QString message, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::LoginFail)
+    ui(new Ui::FailUi)
 {
     ui->setupUi(this);
 
-    QFile *file = new QFile(":qss/qss/loginfail.qss");
+    QFile *file = new QFile(":qss/qss/failui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
     file->deleteLater();
@@ -18,7 +18,7 @@ LoginFail::LoginFail(QString message, QWidget *parent) :
             this, SLOT(close()));
 }
 
-LoginFail::~LoginFail()
+FailUi::~FailUi()
 {
     delete ui;
 }

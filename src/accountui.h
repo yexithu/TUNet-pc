@@ -3,7 +3,7 @@
 
 #include "aboutui.h"
 #include "info.h"
-#include "loginfail.h"
+#include "failui.h"
 #include <QWidget>
 #include <qtimer.h>
 
@@ -24,7 +24,7 @@ public:
 private:
     Ui::AccountUi *ui;
     AboutUi *aboutUi;
-    LoginFail *logoutFail;
+    FailUi *logoutFail;
     QTimer *timer;
 
 signals:

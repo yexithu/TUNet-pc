@@ -3,26 +3,26 @@ QLabel {
 }
 
 QLabel#tunet {
-	font-size: 44px;
+	font-size: 23px;
 	font-weight: 600;
 	color: #ffffff;
 }
 
 QLabel#labmu {
-	font-size: 33px;
+	font-size: 17px;
 	color: #ffffff;
 }
 
 QLabel#developers,#designers,#testers {
 	color: #cccccc;
 	qproperty-alignment: AlignRight;
-	font-size: 20px;
+	font-size: 13px;
 }
 
 QLabel#developersnames,#designersnames,#testersnames {
 	color: #666666;
 	qproperty-alignment: AlignLeft;
-	font-size: 20px;
+	font-size: 13px;
 }
 
 
