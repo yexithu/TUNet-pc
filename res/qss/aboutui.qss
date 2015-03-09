@@ -1,22 +1,28 @@
+QLabel {
+	font-family: 华文细黑;
+}
+
 QLabel#tunet {
-	font-size: 24px;
+	font-size: 44px;
 	font-weight: 600;
 	color: #ffffff;
 }
 
 QLabel#labmu {
-	font-size: 14px;
+	font-size: 33px;
 	color: #ffffff;
 }
 
 QLabel#developers,#designers,#testers {
 	color: #cccccc;
 	qproperty-alignment: AlignRight;
+	font-size: 20px;
 }
 
 QLabel#developersnames,#designersnames,#testersnames {
 	color: #666666;
 	qproperty-alignment: AlignLeft;
+	font-size: 20px;
 }
 
 
