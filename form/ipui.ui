@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>320</width>
-    <height>20</height>
+    <height>21</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,31 +19,18 @@
   <property name="minimumSize">
    <size>
     <width>320</width>
-    <height>20</height>
+    <height>21</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>320</width>
-    <height>20</height>
+    <height>21</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="name">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>4</y>
-     <width>39</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>phone</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="time">
    <property name="geometry">
     <rect>
@@ -54,7 +41,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>03-09 19:08 登陆</string>
+    <string>03-09-19:08登陆</string>
    </property>
   </widget>
   <widget class="QPushButton" name="logout">
@@ -81,6 +68,19 @@
    </property>
    <property name="text">
     <string>0.58GB</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="name">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>phone</string>
    </property>
   </widget>
  </widget>

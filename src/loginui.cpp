@@ -28,17 +28,14 @@ LoginUi::LoginUi(QWidget *parent) :
     ip[0] = new IpUi(0);
     ip[1] = new IpUi(1);
     ip[2] = new IpUi(2);
-
     ui->verticalLayout_2->addWidget(ip[0]);
     ui->verticalLayout_2->addWidget(ip[1]);
     ui->verticalLayout_2->addWidget(ip[2]);
+
+    this->setFixedSize(320, 340);
     ui->extendWidget->setVisible(false);
     ui->extendButton->setCheckable(true);
 
-    this->setFixedSize(320, 350);
-
-    connect(ui->extendButton, SIGNAL(toggled(bool)),
-            ui->extendWidget, SLOT(setVisible(bool)));
     connect(ui->extendButton, SIGNAL(toggled(bool)),
             this, SLOT(adjustWindow(bool)));
 }
@@ -134,8 +131,9 @@ void LoginUi::loginFailDialog(Info info)
 
 void LoginUi::adjustWindow(bool state)
 {
+    ui->extendWidget->setVisible(state);
     if (state)
-        this->setFixedSize(320, 420);
+        this->setFixedSize(320, 425);
     else
-        this->setFixedSize(320, 350);
+        this->setFixedSize(320, 340);
 }
