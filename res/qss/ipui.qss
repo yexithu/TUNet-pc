@@ -1,0 +1,15 @@
+QLabel {
+	color: grey;
+}
+
+QLineEdit {
+	background-color: #eeeeee;
+	margin: 0% 0%;
+	padding: 0% 0;
+	border: 0px;
+}
+
+QLineEdit:focus {
+	background-color: #ffffff;
+}
+

@@ -15,5 +15,6 @@
         <file>qss/accountui.qss</file>
         <file>qss/loadingui.qss</file>
         <file>qss/failui.qss</file>
+        <file>qss/ipui.qss</file>
     </qresource>
 </RCC>

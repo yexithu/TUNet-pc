@@ -2,6 +2,7 @@
 #define IPUI_H
 
 #include <QWidget>
+#include <QFile>
 
 namespace Ui {
 class IpUi;
