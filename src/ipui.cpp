@@ -1,4 +1,4 @@
-#include "ipui.h"
+﻿#include "ipui.h"
 #include "ui_ipui.h"
 
 IpUi::IpUi(int orderNumber, QWidget *parent) :
@@ -14,10 +14,10 @@ IpUi::IpUi(int orderNumber, QWidget *parent) :
 
 IpUi::~IpUi()
 {
-    delete ui;
+	delete ui;
 }
-
+
 void IpUi::logoutClicked()
 {
-    emit logoutRequest(order);
+	emit logoutRequest(order);
 }

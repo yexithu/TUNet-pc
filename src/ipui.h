@@ -1,4 +1,4 @@
-#ifndef IPUI_H
+﻿#ifndef IPUI_H
 #define IPUI_H
 
 #include <QWidget>
