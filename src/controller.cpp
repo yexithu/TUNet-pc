@@ -9,7 +9,10 @@ Controller::Controller()
     timer = new QTimer;
     timer->stop();
     loginUi->show();
+    trayIcon = new QSystemTrayIcon;
+    trayIcon->setIcon(QIcon(":/imgs/images/logo.png"));
 
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), accountUi, SLOT(showNormal()));
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
             network, SLOT(loginSlot(QString, QString)));
@@ -80,6 +83,7 @@ void Controller::onLoginStart(QString username)
 
 void Controller::onLoginSucceed()
 {
+    trayIcon->show();
     loginUi->setEnabled(true);
     loginUi->hide();
     loadingUi->hide();

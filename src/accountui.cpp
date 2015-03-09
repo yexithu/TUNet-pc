@@ -76,7 +76,7 @@ void AccountUi::checkResultSlot(Info info)
     int timeReceived = info.accountInfo->loginTime;
     if (onlineTime != timeReceived) {
         onlineTime = timeReceived;
-        timer->start(1000);
+        timer->start(1000); 
     }
     delete info.accountInfo;
 }
@@ -99,4 +99,20 @@ void AccountUi::logoutFailSlot(Info info)
     logoutFail->exec();
     delete info.accountInfo;
     logoutFail->deleteLater();
+}
+
+void AccountUi::changeEvent(QEvent *event)
+{
+    if (event->type()==QEvent::WindowStateChange)
+    {
+        if (windowState() & Qt::WindowMinimized)
+        {
+            this->setWindowFlags(Qt::Tool);
+        }
+        else/* if(windowState() &Qt::WindowNoState)*/
+        {
+            this->setWindowFlags(Qt::Widget);
+            this->setWindowState(Qt::WindowActive);
+        }
+    }
 }

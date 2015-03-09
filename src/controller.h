@@ -22,6 +22,7 @@ private:
     LoginUi *loginUi;
     LoadingUi *loadingUi;
     AccountUi *accountUi;
+    QSystemTrayIcon *trayIcon;
 
 signals:
     void querySignal(QString, QString);
