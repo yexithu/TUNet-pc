@@ -1,5 +1,5 @@
 ﻿#include <QFile>
-
+#include <QDebug>
 #include "accountui.h"
 #include "ui_accountui.h"
 
@@ -8,10 +8,8 @@ AccountUi::AccountUi(QWidget *parent) :
     ui(new Ui::AccountUi)
 {
     ui->setupUi(this);
-
     aboutUi = new AboutUi;
     timer = new QTimer;
-    timer->start(1000);
     QFile *file = new QFile(":qss/qss/accountui.qss");
     file->open(QFile::ReadOnly);
     setStyleSheet(file->readAll());
@@ -41,12 +39,32 @@ QString timeForm(int k)
         return QString::number(k);
 }
 
+QString trafficForm(double flow)
+{
+    if (flow < 1E3) {
+        return QString::number(flow, 'f', 0) + "B";
+    }
+    else if (flow < 1E6) {
+        return QString::number(flow/1E3, 'f', 2) + "KB";
+    }
+    else if (flow < 1E9) {
+        return QString::number(flow/1E6, 'f', 2) + "MB";
+    }
+    else{
+        return QString::number(flow/1E9, 'f', 2) + "GB";
+    }
+}
 void AccountUi::infoSlot(Info info)
 {
-    double flow = info.accountInfo->totalAccurateTraffic/1000/1000/1000;
-    double money = info.accountInfo->balance;
-    QString flowText = QString::number(flow, 'f', 2) + "GB";
-    QString moneyText = QString::number(money, 'f', 2) + "RMB";
+    QString flowText, moneyText;
+    if (info.infoType == Info::LoginInfo) {
+        flowText = ">=" + trafficForm(info.accountInfo->roughTraffic);
+        moneyText = "Loading...";
+    }
+    else {
+        flowText = trafficForm(info.accountInfo->totalAccurateTraffic);
+        moneyText = QString::number(info.accountInfo->balance, 'f', 2) + "RMB";
+    }
     ui->username->setText(info.accountInfo->userName);
     ui->flowNumber->setText(flowText);
     ui->moneyNumber->setText(moneyText);
@@ -58,15 +76,21 @@ void AccountUi::checkResultSlot(Info info)
     int timeReceived = info.accountInfo->loginTime;
     if (onlineTime != timeReceived) {
         onlineTime = timeReceived;
+        timer->start(1000);
     }
     delete info.accountInfo;
 }
 
 void AccountUi::timeIncrement()
 {
-    onlineTime++;
-    QString timeText = timeForm(onlineTime / 60 / 60) + ":" + timeForm(onlineTime / 60 % 60) + ":" + timeForm(onlineTime % 60);
-    ui->timeNumber->setText(timeText);
+    if (onlineTime >= 0) {
+        onlineTime++;
+        QString timeText = timeForm(onlineTime / 60 / 60) + ":" + timeForm(onlineTime / 60 % 60) + ":" + timeForm(onlineTime % 60);
+        ui->timeNumber->setText(timeText);
+    }
+    else {
+        ui->timeNumber->setText("Loading...");
+    }
 }
 
 void AccountUi::logoutFailSlot(Info info)

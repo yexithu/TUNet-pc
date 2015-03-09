@@ -173,7 +173,6 @@ void Network::loginSlot(QString username, QString password)
     //Get local MAC address. Cannot get correct MAC when there are some virtual machine.
     QList<QNetworkInterface> interfaceList = QNetworkInterface::allInterfaces();
     QString mac;
-
     foreach(QNetworkInterface networkInterface, interfaceList) {
         bool isRunning = networkInterface.flags().testFlag(QNetworkInterface::IsRunning);
         bool isLoopback = networkInterface.flags().testFlag(QNetworkInterface::IsLoopBack);
@@ -201,8 +200,9 @@ void Network::logoutSlot()
 
 void Network::checkSlot()
 {
-    checkReply = manager->post(QNetworkRequest(QUrl("http://net.tsinghua.edu.cn/cgi-bin/do_login")),
-                               "action=check_online");
+    QNetworkRequest checkRequest(QUrl("http://net.tsinghua.edu.cn/cgi-bin/do_login"));
+    checkRequest.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    checkReply = manager->post(checkRequest, "action=check_online");
     connect(checkReply, SIGNAL(finished()), this, SLOT(checkFinished()));
 }
 
