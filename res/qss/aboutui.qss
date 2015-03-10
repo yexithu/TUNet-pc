@@ -27,7 +27,7 @@ QLabel#developersnames,#designersnames,#testersnames {
 
 
 QWidget#background {
-	border-image: url(:/imgs/images/background.jpg);
+	border-image: url(:/imgs/images/background.png);
 }
 
 QWidget#logo {
