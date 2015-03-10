@@ -58,27 +58,25 @@ void AccountUi::infoSlot(Info info)
 {
     QString flowText, moneyText;
     if (info.infoType == Info::LoginInfo) {
-        flowText = ">=" + trafficForm(info.accountInfo->roughTraffic);
+        flowText = ">=" + trafficForm(info.accountInfo.roughTraffic);
         moneyText = "Loading...";
     }
     else {
-        flowText = trafficForm(info.accountInfo->totalAccurateTraffic);
-        moneyText = QString::number(info.accountInfo->balance, 'f', 2) + "RMB";
+        flowText = trafficForm(info.accountInfo.totalAccurateTraffic);
+        moneyText = QString::number(info.accountInfo.balance, 'f', 2) + "RMB";
     }
-    ui->username->setText(info.accountInfo->userName);
+    ui->username->setText(info.accountInfo.userName);
     ui->flowNumber->setText(flowText);
     ui->moneyNumber->setText(moneyText);
-    delete info.accountInfo;
 }
 
 void AccountUi::checkResultSlot(Info info)
 {
-    int timeReceived = info.accountInfo->loginTime;
+    int timeReceived = info.accountInfo.loginTime;
     if (onlineTime != timeReceived) {
         onlineTime = timeReceived;
         timer->start(1000); 
     }
-    delete info.accountInfo;
 }
 
 void AccountUi::timeIncrement()
@@ -95,21 +93,21 @@ void AccountUi::timeIncrement()
 
 void AccountUi::logoutFailSlot(Info info)
 {
-    logoutFail = new FailUi(info.accountInfo->error);
+    logoutFail = new FailUi(info.accountInfo.error);
     logoutFail->exec();
-    delete info.accountInfo;
     logoutFail->deleteLater();
 }
 
 void AccountUi::changeEvent(QEvent *event)
 {
+    qDebug() << event->type();
     if (event->type()==QEvent::WindowStateChange)
     {
         if (windowState() & Qt::WindowMinimized)
         {
             this->setWindowFlags(Qt::Tool);
         }
-        else/* if(windowState() &Qt::WindowNoState)*/
+        else
         {
             this->setWindowFlags(Qt::Widget);
             this->setWindowState(Qt::WindowActive);

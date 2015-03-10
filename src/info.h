@@ -20,7 +20,7 @@ struct AccountInfo
     double totalAccurateTraffic;  //总精确流量，B为单位
     int loginTime;  //Connected times in seconds
     int onlineIpCount;  //ip数量
-    IpInfo *ipInfo;  //ip信息
+    IpInfo ipInfo[3];  //ip信息
 };
 
 
@@ -39,7 +39,7 @@ public:
     };
     
     InfoType infoType;
-    AccountInfo *accountInfo;//Currently all types of info are stored here.
+    AccountInfo accountInfo;//Currently all types of info are stored here.
 };
 
 #endif // INFO_H

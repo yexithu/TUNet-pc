@@ -18,8 +18,7 @@ void Network::querySlot(QString username, QString password)
 
     //设置queryInfo类型以及实例化queryInfo
     queryInfo.infoType = Info::QueryInfo;
-    queryInfo.accountInfo = new AccountInfo;
-    queryInfo.accountInfo->userName = username;  //设置queryInfo的用户名
+    queryInfo.accountInfo.userName = username;  //设置queryInfo的用户名
 
     QByteArray postData;
     QNetworkRequest request;
@@ -92,7 +91,7 @@ void Network::getUserInfo(const QString &replyString)
 
     //获取余额
     temp = all[42].toPlainText();
-    queryInfo.accountInfo->balance = temp.left(temp.length() - 3).toDouble();
+    queryInfo.accountInfo.balance = temp.left(temp.length() - 3).toDouble();
     //获取登陆时流量
     temp = all[36].toPlainText();
     for (int i = 0; i < temp.length(); i++) {
@@ -101,7 +100,7 @@ void Network::getUserInfo(const QString &replyString)
             break;
         }
     }
-    queryInfo.accountInfo->roughTraffic = temp.toDouble();
+    queryInfo.accountInfo.roughTraffic = temp.toDouble();
     frame->deleteLater();
 }
 
@@ -120,10 +119,9 @@ void Network::getIpInfo(const QString &replyString)
     QWebElementCollection all = body.findAll("td");
     QString temp;
 
-    queryInfo.accountInfo->onlineIpCount = (all.count() - 23) / 20;
-    queryInfo.accountInfo->ipInfo = new IpInfo[queryInfo.accountInfo->onlineIpCount];
-    queryInfo.accountInfo->totalAccurateTraffic = queryInfo.accountInfo->roughTraffic;
-    for (int i = 0; i < queryInfo.accountInfo->onlineIpCount; i++) {
+    queryInfo.accountInfo.onlineIpCount = (all.count() - 23) / 20;
+    queryInfo.accountInfo.totalAccurateTraffic = queryInfo.accountInfo.roughTraffic;
+    for (int i = 0; i < queryInfo.accountInfo.onlineIpCount; i++) {
         //ip地址
         temp = all[27 + 20 * i].toPlainText();
         int dotAdress[3];
@@ -133,33 +131,33 @@ void Network::getIpInfo(const QString &replyString)
                 j++;
             }
         }
-        queryInfo.accountInfo->ipInfo[i].ipv4_Ip[0] = temp.left(dotAdress[0]).toInt();
-        queryInfo.accountInfo->ipInfo[i].ipv4_Ip[1] = temp.mid(dotAdress[0] + 1, dotAdress[1] - dotAdress[0] - 1).toInt();
-        queryInfo.accountInfo->ipInfo[i].ipv4_Ip[2] = temp.mid(dotAdress[1] + 1, dotAdress[2] - dotAdress[1] - 1).toInt();
-        queryInfo.accountInfo->ipInfo[i].ipv4_Ip[3] = temp.mid(dotAdress[2] + 1).toInt();
+        queryInfo.accountInfo.ipInfo[i].ipv4_Ip[0] = temp.left(dotAdress[0]).toInt();
+        queryInfo.accountInfo.ipInfo[i].ipv4_Ip[1] = temp.mid(dotAdress[0] + 1, dotAdress[1] - dotAdress[0] - 1).toInt();
+        queryInfo.accountInfo.ipInfo[i].ipv4_Ip[2] = temp.mid(dotAdress[1] + 1, dotAdress[2] - dotAdress[1] - 1).toInt();
+        queryInfo.accountInfo.ipInfo[i].ipv4_Ip[3] = temp.mid(dotAdress[2] + 1).toInt();
         
         //入流量
         temp = all[28 + 20 * i].toPlainText();
-        queryInfo.accountInfo->ipInfo[i].accurateTraffic = temp.left(temp.length() - 1).toDouble();
+        queryInfo.accountInfo.ipInfo[i].accurateTraffic = temp.left(temp.length() - 1).toDouble();
         if (temp[temp.length() - 1] == 'K') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= 1000;
+            queryInfo.accountInfo.ipInfo[i].accurateTraffic *= 1000;
         }
         if (temp[temp.length() - 1] == 'M') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1000 * 1000);
+            queryInfo.accountInfo.ipInfo[i].accurateTraffic *= (1000 * 1000);
         }
         if (temp[temp.length() - 1] == 'G') {
-            queryInfo.accountInfo->ipInfo[i].accurateTraffic *= (1000 * 1000 * 1000);
+            queryInfo.accountInfo.ipInfo[i].accurateTraffic *= (1000 * 1000 * 1000);
         }
-        queryInfo.accountInfo->totalAccurateTraffic += queryInfo.accountInfo->ipInfo[i].accurateTraffic;
+        queryInfo.accountInfo.totalAccurateTraffic += queryInfo.accountInfo.ipInfo[i].accurateTraffic;
 
         //时间
         temp = all[38 + 20 * i].toPlainText();
-        queryInfo.accountInfo->ipInfo[i].onlineTime[0] = temp.mid(temp.length() - 8, 2).toInt();
-        queryInfo.accountInfo->ipInfo[i].onlineTime[1] = temp.mid(temp.length() - 5, 2).toInt();
-        queryInfo.accountInfo->ipInfo[i].onlineTime[2] = temp.mid(temp.length() - 2, 2).toInt();
+        queryInfo.accountInfo.ipInfo[i].onlineTime[0] = temp.mid(temp.length() - 8, 2).toInt();
+        queryInfo.accountInfo.ipInfo[i].onlineTime[1] = temp.mid(temp.length() - 5, 2).toInt();
+        queryInfo.accountInfo.ipInfo[i].onlineTime[2] = temp.mid(temp.length() - 2, 2).toInt();
         //mac
         temp = all[41 + 20 * i].toPlainText();
-        queryInfo.accountInfo->ipInfo[i].macAdress = temp;
+        queryInfo.accountInfo.ipInfo[i].macAdress = temp;
     }
     frame->deleteLater();
 }
@@ -210,23 +208,22 @@ void Network::loginFinished()
 {
     QNetworkReply *reply = loginReply;
     loginInfo.infoType = Info::LoginInfo;
-    loginInfo.accountInfo = new AccountInfo;
-    AccountInfo *info = loginInfo.accountInfo;
     if (reply->error() == QNetworkReply::NoError) {
         QString dataReceived = reply->readAll();
         QList<QString> temp = dataReceived.split(',');
         quint64 uid = temp[0].toULongLong();
         if (uid == 0) {
-            info->error = temp[0];
+            loginInfo.accountInfo.error = temp[0];
             emit loginFail(loginInfo);
         }
         else {
-            info->roughTraffic = temp[2].toDouble();
+            loginInfo.accountInfo.roughTraffic = temp[2].toDouble();
             emit loginSucceed(loginInfo);
         }
     }
+
     else {
-        info->error = reply->errorString();
+        loginInfo.accountInfo.error = reply->errorString();
         emit loginFail(loginInfo);
     }
     reply->deleteLater();
@@ -237,18 +234,17 @@ void Network::logoutFinished()
     QNetworkReply *reply = logoutReply;
     Info logoutInfo;
     logoutInfo.infoType = Info::LogoutInfo;
-    logoutInfo.accountInfo = new AccountInfo;
     if (reply->error() == QNetworkReply::NoError) {
         QString result = reply->readAll();
         if (result == "logout_ok") {
             emit logoutSucceed();
             return;
         }
-        logoutInfo.accountInfo->error = result;
+        logoutInfo.accountInfo.error = result;
         emit logoutFail(logoutInfo);
     }
     else {
-        logoutInfo.accountInfo->error = reply->errorString();
+        logoutInfo.accountInfo.error = reply->errorString();
         emit logoutFail(logoutInfo);
     }
     reply->deleteLater();
@@ -259,23 +255,21 @@ void Network::checkFinished()
     QNetworkReply *reply = checkReply;
     Info checkInfo;
     checkInfo.infoType = Info::CheckInfo;
-    checkInfo.accountInfo = new AccountInfo;
-    AccountInfo *info = checkInfo.accountInfo;
     if (reply->error() == QNetworkReply::NoError) {
         QString dataReceived = reply->readAll();
         if (dataReceived == "") {
-            info->error = "not_logged_in";
+            checkInfo.accountInfo.error = "not_logged_in";
             emit checkResult(checkInfo);
         }
         else {
             QList<QString> temp = dataReceived.split(',');
-            info->balance = temp[2].toDouble();
-            info->loginTime = temp[4].toLong();
+            checkInfo.accountInfo.balance = temp[2].toDouble();
+            checkInfo.accountInfo.loginTime = temp[4].toLong();
             emit checkResult(checkInfo);
         }
     }
     else {
-        info->error = reply->errorString();
+        checkInfo.accountInfo.error = reply->errorString();
         emit checkResult(checkInfo);
     }
     reply->deleteLater();
