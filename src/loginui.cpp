@@ -136,3 +136,9 @@ void LoginUi::adjustWindow(bool state)
     else
         this->setFixedSize(320, 340);
 }
+
+void LoginUi::closeEvent(QCloseEvent *event)
+{
+    hide();
+    event->ignore();
+}

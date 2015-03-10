@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QtNetwork>
 #include <QSettings>
+#include <QCloseEvent>
 
 namespace Ui {
 class LoginUi;
@@ -43,6 +44,9 @@ private slots:
 
 public slots:
     void loginFailDialog(Info);
+
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // LOGINUI_H

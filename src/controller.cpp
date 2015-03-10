@@ -6,13 +6,21 @@ Controller::Controller()
     loginUi = new LoginUi;
     loadingUi = new LoadingUi;
     accountUi = new AccountUi;
+
+    loginUi->setWindowFlags(Qt::Tool);
+    loadingUi->setWindowFlags(Qt::Tool);
+    accountUi->setWindowFlags(Qt::Tool);
+
     timer = new QTimer;
     timer->stop();
-    loginUi->show();
-    trayIcon = new QSystemTrayIcon;
-    trayIcon->setIcon(QIcon(":/imgs/images/logo.png"));
+    showUi(login);
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), accountUi, SLOT(showNormal()));
+    creatTrayMenu();
+    trayIcon = new QSystemTrayIcon;
+    trayIcon->setContextMenu(trayMenu);
+    trayIcon->setIcon(QIcon(":/imgs/images/logo.png"));
+    trayIcon->show();
+
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
             network, SLOT(loginSlot(QString, QString)));
@@ -51,9 +59,7 @@ Controller::Controller()
 
     //断开成功
     connect(network, SIGNAL(logoutSucceed()),
-            loginUi, SLOT(show()));
-    connect(network, SIGNAL(logoutSucceed()),
-            accountUi, SLOT(hide()));
+            this, SLOT(onLogoutSucceed()));
     connect(network, SIGNAL(logoutSucceed()),
             timer, SLOT(stop()));
 
@@ -61,6 +67,39 @@ Controller::Controller()
     connect(network, SIGNAL(logoutFail(Info)),
             accountUi, SLOT(logoutFailSlot(Info)));
 
+}
+
+void Controller::showUi(kind which)
+{
+    if (which != change)
+    {
+        if (loginUi->isVisible()) loginUi->hide();
+        if (loadingUi->isVisible()) loadingUi->hide();
+        if (accountUi->isVisible()) accountUi->hide();
+    }
+    switch (which)
+    {
+        case change:
+            if (last == login)
+                loginUi->setVisible(!loginUi->isVisible());
+            if (last == loading)
+                loadingUi->setVisible(!loadingUi->isVisible());
+            if (last == account)
+                accountUi->setVisible(!accountUi->isVisible());
+            break;
+        case login:
+            loginUi->show();
+            last = login;
+            break;
+        case loading:
+            loadingUi->show();
+            last = loading;
+            break;
+        case account:
+            accountUi->show();
+            last = account;
+            break;
+    }
 }
 
 void Controller::setTimer()
@@ -78,16 +117,13 @@ void Controller::onLoginStart(QString username)
 {
     loginUi->setEnabled(false);
     loadingUi->setUsername(username);
-    loadingUi->show();
+    showUi(loading);
 }
 
 void Controller::onLoginSucceed()
 {
-    trayIcon->show();
     loginUi->setEnabled(true);
-    loginUi->hide();
-    loadingUi->hide();
-    accountUi->show();
+    showUi(account);
     emit checkSignal();
     emit querySignal(loginUi->username, loginUi->password);
 }
@@ -95,7 +131,37 @@ void Controller::onLoginSucceed()
 void Controller::onLoginFail()
 {
     loginUi->setEnabled(true);
-    loadingUi->hide();
+    showUi(login);
+}
+
+void Controller::onLogoutSucceed()
+{
+    loginUi->setEnabled(true);
+    showUi(login);
+}
+
+void Controller::creatTrayMenu()
+{
+    trayMenu = new QMenu((QWidget*)QApplication::desktop());
+
+    QAction *showHideAction = new QAction("Show/Hide", this);
+    QAction *quitAction = new QAction(tr("Exit"), this);
+    trayMenu->addAction(showHideAction);
+    trayMenu->addAction(quitAction);
+    connect(quitAction, SIGNAL(triggered()),
+            this, SLOT(quit()));
+    connect(showHideAction, SIGNAL(triggered()),
+            this, SLOT(showHide()));
+}
+
+void Controller::quit()
+{
+    qApp->quit();
+}
+
+void Controller::showHide()
+{
+    showUi(change);
 }
 
 Controller::~Controller()

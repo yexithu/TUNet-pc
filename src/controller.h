@@ -7,6 +7,8 @@
 #include "loadingui.h"
 #include "network.h"
 #include <QTimer>
+#include <QAction>
+#include <QMenu>
 
 class Controller : public QObject
 {
@@ -22,7 +24,9 @@ private:
     LoginUi *loginUi;
     LoadingUi *loadingUi;
     AccountUi *accountUi;
+    QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
+    enum kind{change, login, loading, account} last;
 
 signals:
     void querySignal(QString, QString);
@@ -33,7 +37,12 @@ private slots:
     void onTimeOut();
     void onLoginStart(QString);
     void onLoginSucceed();
+    void onLogoutSucceed();
     void onLoginFail();
+    void showUi(kind);
+    void creatTrayMenu();
+    void quit();
+    void showHide();
 };
 
 #endif // CONTROLLER_H

@@ -4,8 +4,10 @@
 #include "aboutui.h"
 #include "info.h"
 #include "failui.h"
+
 #include <QWidget>
 #include <qtimer.h>
+#include <QCloseEvent>
 
 namespace Ui {
 class AccountUi;
@@ -27,8 +29,6 @@ private:
     FailUi *logoutFail;
     QTimer *timer;
 
-    void changeEvent(QEvent *event);
-
 signals:
     void logoutSignal();
 
@@ -40,6 +40,9 @@ public slots:
     void infoSlot(Info);
     void checkResultSlot(Info);
     void logoutFailSlot(Info);
+
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // ACCOUNTUI_H

@@ -98,19 +98,8 @@ void AccountUi::logoutFailSlot(Info info)
     logoutFail->deleteLater();
 }
 
-void AccountUi::changeEvent(QEvent *event)
+void AccountUi::closeEvent(QCloseEvent *event)
 {
-    qDebug() << event->type();
-    if (event->type()==QEvent::WindowStateChange)
-    {
-        if (windowState() & Qt::WindowMinimized)
-        {
-            this->setWindowFlags(Qt::Tool);
-        }
-        else
-        {
-            this->setWindowFlags(Qt::Widget);
-            this->setWindowState(Qt::WindowActive);
-        }
-    }
+    hide();
+    event->ignore();
 }
