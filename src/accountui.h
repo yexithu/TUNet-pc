@@ -27,8 +27,6 @@ private:
     FailUi *logoutFail;
     QTimer *timer;
 
-    void changeEvent(QEvent *event);
-
 signals:
     void logoutSignal();
 
