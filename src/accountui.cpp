@@ -19,6 +19,20 @@ AccountUi::AccountUi(QWidget *parent) :
     connect(ui->logoutButton, SIGNAL(clicked()),
             this, SLOT(logoutClicked()));
     connect(timer, SIGNAL(timeout()), this, SLOT(timeIncrement()));
+
+    ip[0] = new IpUi(0);
+    ip[1] = new IpUi(1);
+    ip[2] = new IpUi(2);
+    ui->verticalLayout_2->addWidget(ip[0]);
+    ui->verticalLayout_2->addWidget(ip[1]);
+    ui->verticalLayout_2->addWidget(ip[2]);
+
+    this->setFixedSize(320, 340);
+    ui->extendWidget->setVisible(false);
+    ui->extendButton->setCheckable(true);
+
+    connect(ui->extendButton, SIGNAL(toggled(bool)),
+            this, SLOT(adjustWindow(bool)));
 }
 
 AccountUi::~AccountUi()
@@ -96,6 +110,15 @@ void AccountUi::logoutFailSlot(Info info)
     logoutFail = new FailUi(info.accountInfo.error);
     logoutFail->exec();
     logoutFail->deleteLater();
+}
+
+void AccountUi::adjustWindow(bool state)
+{
+    ui->extendWidget->setVisible(state);
+    if (state)
+        this->setFixedSize(320, 425);
+    else
+        this->setFixedSize(320, 340);
 }
 
 void AccountUi::closeEvent(QCloseEvent *event)

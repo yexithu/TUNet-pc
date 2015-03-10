@@ -24,20 +24,6 @@ LoginUi::LoginUi(QWidget *parent) :
             this, SLOT(saveInfo()));
     connect(ui->loginButton, SIGNAL(clicked()),
             this, SLOT(loginClicked()));
-
-    ip[0] = new IpUi(0);
-    ip[1] = new IpUi(1);
-    ip[2] = new IpUi(2);
-    ui->verticalLayout_2->addWidget(ip[0]);
-    ui->verticalLayout_2->addWidget(ip[1]);
-    ui->verticalLayout_2->addWidget(ip[2]);
-
-    this->setFixedSize(320, 340);
-    ui->extendWidget->setVisible(false);
-    ui->extendButton->setCheckable(true);
-
-    connect(ui->extendButton, SIGNAL(toggled(bool)),
-            this, SLOT(adjustWindow(bool)));
 }
 
 LoginUi::~LoginUi()
@@ -126,15 +112,6 @@ void LoginUi::loginFailDialog(Info info)
     loginFail = new FailUi(info.accountInfo.error);
     loginFail->exec();
     loginFail->deleteLater();
-}
-
-void LoginUi::adjustWindow(bool state)
-{
-    ui->extendWidget->setVisible(state);
-    if (state)
-        this->setFixedSize(320, 425);
-    else
-        this->setFixedSize(320, 340);
 }
 
 void LoginUi::closeEvent(QCloseEvent *event)

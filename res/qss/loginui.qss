@@ -14,19 +14,6 @@ QPushButton:pressed {
 	background-color: #4584c3;
 }
 
-QPushButton#extendButton {
-	border-radius: 50%;
-	background-color: #cccccc;	
-}
-
-QPushButton:hover#extendButton {
-	background-color: #5aaaff;
-}
-
-QPushButton:pressed#extendButton {
-	background-color: #4584c3;
-}
-
 QLineEdit {
 	background-color: #fff;
 	margin: 0% 5%;
