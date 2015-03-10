@@ -15,12 +15,18 @@ LoadingUi::LoadingUi(QWidget *parent) :
     connect(ui->cancelButton, SIGNAL(clicked()), this, SIGNAL(loginAbort()));
 }
 
+LoadingUi::~LoadingUi()
+{
+    delete ui;
+}
+
 void LoadingUi::setUsername(QString name)
 {
     ui->username->setText(name);
 }
 
-LoadingUi::~LoadingUi()
+void LoadingUi::closeEvent(QCloseEvent *event)
 {
-    delete ui;
+    hide();
+    event->ignore();
 }

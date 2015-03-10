@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("lab.mu");
     QCoreApplication::setApplicationName("tunet");
     QApplication a(argc, argv);
+    a.setQuitOnLastWindowClosed(false);
     Controller controller;
     return a.exec();
 }

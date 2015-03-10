@@ -144,8 +144,8 @@ void Controller::creatTrayMenu()
 {
     trayMenu = new QMenu((QWidget*)QApplication::desktop());
 
-    QAction *showHideAction = new QAction(tr("显示/隐藏(&S)"), this);
-    QAction *quitAction = new QAction(tr("退出(&Q)"), this);
+    QAction *showHideAction = new QAction("Show/Hide", this);
+    QAction *quitAction = new QAction(tr("Exit"), this);
     trayMenu->addAction(showHideAction);
     trayMenu->addAction(quitAction);
     connect(quitAction, SIGNAL(triggered()),

@@ -97,3 +97,9 @@ void AccountUi::logoutFailSlot(Info info)
     logoutFail->exec();
     logoutFail->deleteLater();
 }
+
+void AccountUi::closeEvent(QCloseEvent *event)
+{
+    hide();
+    event->ignore();
+}

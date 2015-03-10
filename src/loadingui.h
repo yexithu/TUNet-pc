@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFile>
+#include <QCloseEvent>
 
 namespace Ui {
 class LoadingUi;
@@ -16,10 +17,15 @@ public:
     explicit LoadingUi(QWidget *parent = 0);
     ~LoadingUi();
     void setUsername(QString);
+
 signals:
     void loginAbort();
+
 private:
     Ui::LoadingUi *ui;
+
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // LOADINGUI_H
