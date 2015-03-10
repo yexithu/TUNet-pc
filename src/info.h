@@ -6,9 +6,11 @@
 struct IpInfo
 {
     int ipv4_Ip[4];  //ip地址，
-    int onlineTime[3];  //上线时间,时，秒，分
+    QString onlineTimeString;//上线时间字符串,example  03-02 08:28
+    int onlineTime[3];//上线时间
     QString macAdress;  //mac地址
     double accurateTraffic;  //该ip精确流量
+    QString IpLogoutCookie; //下线ip用的cookie
 };
 
 struct AccountInfo

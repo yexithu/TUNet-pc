@@ -43,6 +43,7 @@ private slots:
     void creatTrayMenu();
     void quit();
     void showHide();
+    void trayIconClicked(QSystemTrayIcon::ActivationReason);
 };
 
 #endif // CONTROLLER_H

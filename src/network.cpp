@@ -152,12 +152,16 @@ void Network::getIpInfo(const QString &replyString)
 
         //时间
         temp = all[38 + 20 * i].toPlainText();
+        queryInfo.accountInfo.ipInfo[i].onlineTimeString = temp.mid(5, 11); 
         queryInfo.accountInfo.ipInfo[i].onlineTime[0] = temp.mid(temp.length() - 8, 2).toInt();
         queryInfo.accountInfo.ipInfo[i].onlineTime[1] = temp.mid(temp.length() - 5, 2).toInt();
         queryInfo.accountInfo.ipInfo[i].onlineTime[2] = temp.mid(temp.length() - 2, 2).toInt();
         //mac
         temp = all[41 + 20 * i].toPlainText();
         queryInfo.accountInfo.ipInfo[i].macAdress = temp;
+        //coockie
+        temp = all[42 + 20 * i].firstChild().attribute("onclick");
+        queryInfo.accountInfo.ipInfo[i].IpLogoutCookie = temp.mid(temp.length() - 35, 32);
     }
     frame->deleteLater();
 }
@@ -275,6 +279,43 @@ void Network::checkFinished()
     reply->deleteLater();
 }
 
+void Network::dropIpSlot(int IpId)
+{
+    QNetworkRequest dropIpRequest;
+    QByteArray postData;
+    QString temp;
+    temp = (QString::number(queryInfo.accountInfo.ipInfo[IpId].ipv4_Ip[0]) + "." +
+        QString::number(queryInfo.accountInfo.ipInfo[IpId].ipv4_Ip[1]) + "." +
+        QString::number(queryInfo.accountInfo.ipInfo[IpId].ipv4_Ip[2]) + "." +
+        QString::number(queryInfo.accountInfo.ipInfo[IpId].ipv4_Ip[3]));
+    postData.append("action=drop&user_ip=" + temp);
+    postData.append("&checksum=" + queryInfo.accountInfo.ipInfo[IpId].IpLogoutCookie);
+    dropIpRequest.setHeader(QNetworkRequest::ContentLengthHeader, postData.length());
+    dropIpRequest.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    dropIpRequest.setUrl(QUrl("http://usereg.tsinghua.edu.cn/online_user_ipv4.php"));
+    
+    dropIpReply = manager->post(dropIpRequest, postData);
+    connect(dropIpReply, SIGNAL(finished()), this, SLOT(dropIpFinished()));
+}
+
+void Network::dropIpFinished()
+{
+    QNetworkReply *reply = dropIpReply;
+    QString replyString;
+    QTextCodec *codec = QTextCodec::codecForName("GB2312");
+    replyString = codec->toUnicode((reply->readAll()));
+    //读取reply
+    if (replyString == "ok")
+    {
+        emit dropIpSucceed();
+    }
+    else
+    {
+        emit dropIpFail();
+    }
+    reply->deleteLater();
+
+}
 void Network::loginAbortSlot()
 {
     loginReply->abort();

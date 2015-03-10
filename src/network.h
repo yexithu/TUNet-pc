@@ -17,7 +17,7 @@ public:
 
 private:
     QNetworkAccessManager *manager;
-    QNetworkReply *queryReply, *loginReply, *logoutReply, *checkReply;
+    QNetworkReply *queryReply, *loginReply, *logoutReply, *checkReply, *dropIpReply;
 
     enum RequestType
     {
@@ -37,13 +37,14 @@ public slots:
     void querySlot(QString, QString);
     void checkSlot();  //Check whether logged in, and get conneted time.
     void loginAbortSlot(); //Abort login
+    void dropIpSlot(int);
 
 private slots:
     void queryFinished();
     void loginFinished();
     void logoutFinished();
     void checkFinished();
-
+    void dropIpFinished();
 signals:
     void infoSignal(Info);
     void loginSucceed(Info);
@@ -51,6 +52,8 @@ signals:
     void loginFail(Info);
     void logoutFail(Info);
     void checkResult(Info);
+    void dropIpSucceed();
+    void dropIpFail();
 };
 
 #endif // NETWORK_H

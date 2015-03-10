@@ -20,6 +20,8 @@ Controller::Controller()
     trayIcon->setContextMenu(trayMenu);
     trayIcon->setIcon(QIcon(":/imgs/images/logo.png"));
     trayIcon->show();
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason)));
+    
 
     //登陆
     connect(loginUi, SIGNAL(loginSignal(QString, QString)),
@@ -162,6 +164,14 @@ void Controller::quit()
 void Controller::showHide()
 {
     showUi(change);
+}
+
+void Controller::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger)
+    {
+        emit showHide();
+    }
 }
 
 Controller::~Controller()
