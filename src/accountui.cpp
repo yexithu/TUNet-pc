@@ -61,12 +61,14 @@ void AccountUi::infoSlot(Info info)
     ui->flowNumber->setText(flowText);
     ui->moneyNumber->setText(moneyText);
 
-    for (int i = 0; i < std::min(info.accountInfo.onlineIpCount, 3); ++i)
-        ip[i]->showIp(info.accountInfo.ipInfo[i]);
+    if (info.infoType == Info::QueryInfo)
+    {
+        for (int i = 0; i < info.accountInfo.onlineIpCount; ++i)
+            ip[i]->showIp(info.accountInfo.ipInfo[i]);
 
-    for (int i = std::max(info.accountInfo.onlineIpCount, 0); i < 3; ++i)
-        ip[i]->hideIp();
-
+        for (int i = info.accountInfo.onlineIpCount; i < 3; ++i)
+            ip[i]->hideIp();
+    }
 }
 
 void AccountUi::checkResultSlot(Info info)
