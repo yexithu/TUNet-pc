@@ -2,6 +2,7 @@
 #define ACCOUNTUI_H
 
 #include "aboutui.h"
+#include "ipui.h"
 #include "info.h"
 #include "failui.h"
 
@@ -28,6 +29,7 @@ private:
     AboutUi *aboutUi;
     FailUi *logoutFail;
     QTimer *timer;
+    IpUi *ip[3];
 
 signals:
     void logoutSignal();
@@ -35,6 +37,7 @@ signals:
 private slots:
     void logoutClicked();
     void timeIncrement();
+    void adjustWindow(bool state);
 
 public slots:
     void infoSlot(Info);

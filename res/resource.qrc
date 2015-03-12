@@ -3,11 +3,11 @@
         <file>images/logo.png</file>
         <file>images/password.png</file>
         <file>images/username.png</file>
-        <file>images/background.jpg</file>
         <file>images/flow.png</file>
         <file>images/money.png</file>
         <file>images/time.png</file>
         <file>images/logo2.png</file>
+        <file>images/background.png</file>
     </qresource>
     <qresource prefix="/qss">
         <file>qss/loginui.qss</file>

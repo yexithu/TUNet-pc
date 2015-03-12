@@ -42,14 +42,18 @@ Controller::Controller()
             loginUi, SLOT(loginFailDialog(Info)));
     connect(network, SIGNAL(loginFail(Info)),
             this, SLOT(onLoginFail()));
+
     //Abort login
-    connect(loadingUi, SIGNAL(loginAbort()), network, SLOT(loginAbortSlot()));
+    connect(loadingUi, SIGNAL(loginAbort()),
+            network, SLOT(loginAbortSlot()));
 
     //定时查询
     connect(timer, SIGNAL(timeout()),
             this, SLOT(onTimeOut()));
-    connect(this, SIGNAL(checkSignal()), network, SLOT(checkSlot()));
-    connect(network, SIGNAL(checkResult(Info)), accountUi, SLOT(checkResultSlot(Info)));
+    connect(this, SIGNAL(checkSignal()),
+            network, SLOT(checkSlot()));
+    connect(network, SIGNAL(checkResult(Info)),
+            accountUi, SLOT(checkResultSlot(Info)));
     connect(this, SIGNAL(querySignal(QString, QString)),
             network, SLOT(querySlot(QString, QString)));
     connect(network, SIGNAL(infoSignal(Info)),

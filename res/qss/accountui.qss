@@ -51,3 +51,19 @@ QPushButton:pressed {
 QPushButton#disconnectButton {
 	background-color: red;
 }
+
+QPushButton#extendButton {
+	background-color: #cccccc;
+	background-color: white;
+}
+
+QPushButton:hover#extendButton {
+	background-color: #5aaaff;
+}
+
+QPushButton:pressed#extendButton {
+	background-color: #4584c3;
+}
+
+
+

@@ -19,6 +19,20 @@ AccountUi::AccountUi(QWidget *parent) :
     connect(ui->logoutButton, SIGNAL(clicked()),
             this, SLOT(logoutClicked()));
     connect(timer, SIGNAL(timeout()), this, SLOT(timeIncrement()));
+
+    ip[0] = new IpUi(0);
+    ip[1] = new IpUi(1);
+    ip[2] = new IpUi(2);
+    ui->verticalLayout_2->addWidget(ip[0]);
+    ui->verticalLayout_2->addWidget(ip[1]);
+    ui->verticalLayout_2->addWidget(ip[2]);
+
+    this->setFixedSize(320, 340);
+    ui->extendWidget->setVisible(false);
+    ui->extendButton->setCheckable(true);
+
+    connect(ui->extendButton, SIGNAL(toggled(bool)),
+            this, SLOT(adjustWindow(bool)));
 }
 
 AccountUi::~AccountUi()
@@ -31,43 +45,30 @@ void AccountUi::logoutClicked()
     emit logoutSignal();
 }
 
-QString timeForm(int k)
-{
-    if (k < 10)
-        return "0" + QString::number(k);
-    else
-        return QString::number(k);
-}
-
-QString trafficForm(double flow)
-{
-    if (flow < 1E3) {
-        return QString::number(flow, 'f', 0) + "B";
-    }
-    else if (flow < 1E6) {
-        return QString::number(flow/1E3, 'f', 2) + "KB";
-    }
-    else if (flow < 1E9) {
-        return QString::number(flow/1E6, 'f', 2) + "MB";
-    }
-    else{
-        return QString::number(flow/1E9, 'f', 2) + "GB";
-    }
-}
 void AccountUi::infoSlot(Info info)
 {
+
     QString flowText, moneyText;
     if (info.infoType == Info::LoginInfo) {
-        flowText = ">=" + trafficForm(info.accountInfo.roughTraffic);
+        flowText = ">=" + info.accountInfo.ipInfo[0].trafficForm(info.accountInfo.roughTraffic);
         moneyText = "Loading...";
     }
     else {
-        flowText = trafficForm(info.accountInfo.totalAccurateTraffic);
+        flowText = info.accountInfo.ipInfo[0].trafficForm(info.accountInfo.totalAccurateTraffic);
         moneyText = QString::number(info.accountInfo.balance, 'f', 2) + "RMB";
     }
     ui->username->setText(info.accountInfo.userName);
     ui->flowNumber->setText(flowText);
     ui->moneyNumber->setText(moneyText);
+
+    if (info.infoType == Info::QueryInfo)
+    {
+        for (int i = 0; i < info.accountInfo.onlineIpCount; ++i)
+            ip[i]->showIp(info.accountInfo.ipInfo[i]);
+
+        for (int i = info.accountInfo.onlineIpCount; i < 3; ++i)
+            ip[i]->hideIp();
+    }
 }
 
 void AccountUi::checkResultSlot(Info info)
@@ -77,6 +78,14 @@ void AccountUi::checkResultSlot(Info info)
         onlineTime = timeReceived;
         timer->start(1000); 
     }
+}
+
+QString timeForm(int k)
+{
+    if (k < 10)
+        return "0" + QString::number(k);
+    else
+        return QString::number(k);
 }
 
 void AccountUi::timeIncrement()
@@ -96,6 +105,15 @@ void AccountUi::logoutFailSlot(Info info)
     logoutFail = new FailUi(info.accountInfo.error);
     logoutFail->exec();
     logoutFail->deleteLater();
+}
+
+void AccountUi::adjustWindow(bool state)
+{
+    ui->extendWidget->setVisible(state);
+    if (state)
+        this->setFixedSize(320, 425);
+    else
+        this->setFixedSize(320, 340);
 }
 
 void AccountUi::closeEvent(QCloseEvent *event)

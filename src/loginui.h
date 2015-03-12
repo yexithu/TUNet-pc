@@ -28,7 +28,6 @@ signals:
     void loginSignal(QString username, QString password);
 
 private:
-    IpUi *ip[3];
     Ui::LoginUi *ui;
     QString url;
     QSettings settings;
@@ -40,7 +39,6 @@ private slots:
     void loadInfo();
     void saveInfo();
     void loginClicked();
-    void adjustWindow(bool state);
 
 public slots:
     void loginFailDialog(Info);

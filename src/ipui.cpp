@@ -22,6 +22,27 @@ IpUi::~IpUi()
 	delete ui;
 }
 
+void IpUi::showIp(IpInfo info)
+{
+    ui->name->show();
+    ui->time->show();
+    ui->traffic->show();
+    ui->logout->show();
+    ui->name->setText(info.macAdress);
+    ui->time->setText(info.timeForm(info.onlineTime[0]) + ":" +
+                      info.timeForm(info.onlineTime[1]) + ":" +
+                      info.timeForm(info.onlineTime[2]));
+    ui->traffic->setText(info.trafficForm(info.accurateTraffic));
+}
+
+void IpUi::hideIp()
+{
+    ui->name->hide();
+    ui->time->hide();
+    ui->traffic->hide();
+    ui->logout->hide();
+}
+
 void IpUi::logoutClicked()
 {
     emit logoutRequest(order);
