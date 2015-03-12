@@ -45,43 +45,28 @@ void AccountUi::logoutClicked()
     emit logoutSignal();
 }
 
-QString timeForm(int k)
-{
-    if (k < 10)
-        return "0" + QString::number(k);
-    else
-        return QString::number(k);
-}
-
-QString trafficForm(double flow)
-{
-    if (flow < 1E3) {
-        return QString::number(flow, 'f', 0) + "B";
-    }
-    else if (flow < 1E6) {
-        return QString::number(flow/1E3, 'f', 2) + "KB";
-    }
-    else if (flow < 1E9) {
-        return QString::number(flow/1E6, 'f', 2) + "MB";
-    }
-    else{
-        return QString::number(flow/1E9, 'f', 2) + "GB";
-    }
-}
 void AccountUi::infoSlot(Info info)
 {
+
     QString flowText, moneyText;
     if (info.infoType == Info::LoginInfo) {
-        flowText = ">=" + trafficForm(info.accountInfo.roughTraffic);
+        flowText = ">=" + info.accountInfo.ipInfo[0].trafficForm(info.accountInfo.roughTraffic);
         moneyText = "Loading...";
     }
     else {
-        flowText = trafficForm(info.accountInfo.totalAccurateTraffic);
+        flowText = info.accountInfo.ipInfo[0].trafficForm(info.accountInfo.totalAccurateTraffic);
         moneyText = QString::number(info.accountInfo.balance, 'f', 2) + "RMB";
     }
     ui->username->setText(info.accountInfo.userName);
     ui->flowNumber->setText(flowText);
     ui->moneyNumber->setText(moneyText);
+
+    for (int i = 0; i < std::min(info.accountInfo.onlineIpCount, 3); ++i)
+        ip[i]->showIp(info.accountInfo.ipInfo[i]);
+
+    for (int i = std::max(info.accountInfo.onlineIpCount, 0); i < 3; ++i)
+        ip[i]->hideIp();
+
 }
 
 void AccountUi::checkResultSlot(Info info)
@@ -91,6 +76,14 @@ void AccountUi::checkResultSlot(Info info)
         onlineTime = timeReceived;
         timer->start(1000); 
     }
+}
+
+QString timeForm(int k)
+{
+    if (k < 10)
+        return "0" + QString::number(k);
+    else
+        return QString::number(k);
 }
 
 void AccountUi::timeIncrement()

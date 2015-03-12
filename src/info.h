@@ -11,6 +11,8 @@ struct IpInfo
     QString macAdress;  //mac地址
     double accurateTraffic;  //该ip精确流量
     QString IpLogoutCookie; //下线ip用的cookie
+    QString trafficForm(double);
+    QString timeForm(int);
 };
 
 struct AccountInfo
