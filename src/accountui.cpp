@@ -121,3 +121,23 @@ void AccountUi::closeEvent(QCloseEvent *event)
     hide();
     event->ignore();
 }
+
+void AccountUi::firstDropIpClicked()
+{
+    emit dropIpSignal(0);
+}
+
+void AccountUi::secondDropIpClicked()
+{
+    emit dropIpSignal(1);
+}
+
+void AccountUi::thirdDropIpClicked()
+{
+    emit dropIpSignal(2);
+}
+
+void AccountUi::DropIpFinishedSlot(bool)
+{
+
+}

@@ -303,15 +303,15 @@ void Network::dropIpFinished()
     QNetworkReply *reply = dropIpReply;
     QString replyString;
     QTextCodec *codec = QTextCodec::codecForName("GB2312");
-    replyString = codec->toUnicode((reply->readAll()));
+    replyString = codec->toUnicode((reply->readAll())); 
     //读取reply
     if (replyString == "ok")
     {
-        emit dropIpSucceed();
+        emit dropIpResult(true);
     }
     else
     {
-        emit dropIpFail();
+        emit dropIpResult(false);
     }
     reply->deleteLater();
 

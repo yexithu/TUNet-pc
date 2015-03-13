@@ -73,6 +73,9 @@ Controller::Controller()
     connect(network, SIGNAL(logoutFail(Info)),
             accountUi, SLOT(logoutFailSlot(Info)));
 
+    //下线ip
+    connect(accountUi, SIGNAL(dropIpSignal(int)), network, SLOT(dropIpSlot(int)));
+    connect(network, SIGNAL(dropIpResult(bool)), accountUi, SLOT(dropIpFinishedSlot(bool)));
 }
 
 void Controller::showUi(kind which)

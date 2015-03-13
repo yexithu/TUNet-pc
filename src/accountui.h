@@ -33,16 +33,20 @@ private:
 
 signals:
     void logoutSignal();
+    void dropIpSignal(int);
 
 private slots:
     void logoutClicked();
     void timeIncrement();
     void adjustWindow(bool state);
-
+    void firstDropIpClicked();
+    void secondDropIpClicked();
+    void thirdDropIpClicked();
 public slots:
     void infoSlot(Info);
     void checkResultSlot(Info);
     void logoutFailSlot(Info);
+    void DropIpFinishedSlot(bool);  
 
 protected:
     void closeEvent(QCloseEvent *event);

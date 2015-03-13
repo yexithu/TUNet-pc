@@ -52,8 +52,7 @@ signals:
     void loginFail(Info);
     void logoutFail(Info);
     void checkResult(Info);
-    void dropIpSucceed();
-    void dropIpFail();
+    void dropIpResult(bool);
 };
 
 #endif // NETWORK_H
